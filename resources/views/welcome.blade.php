@@ -71,8 +71,12 @@
             </p>
 
             @if($online->get('online',collect())->count())
-                <h2 class="mb-4 text-center">Streaming</h2>
-                @include('partials.streamer-list',['streamers'=>$online->get('online')])
+                <h2 class=" mb-4 text-center">
+                    <span class="text-danger ml-3 font-weight-bold">
+                        <i class="fas fa-circle blink"></i> LIVE
+                    </span>
+                </h2>
+                @include('partials.streamer-list',['streamers'=>$online->get('online'),'isStreaming'=>true])
             @endif
             @if($online->get('offline',collect())->count())
                 <h2 class="mb-4 text-center">Offline</h2>

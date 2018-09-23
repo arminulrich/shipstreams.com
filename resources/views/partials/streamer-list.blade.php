@@ -1,7 +1,7 @@
 <div class="mb-5">
     @foreach($streamers as $streamer)
         <?PHP /** @var \App\Streamer $streamer */ ?>
-        @component('card')
+        @component('card',(isset($isStreaming)?compact('isStreaming'):[]))
             @slot('image'){!! $streamer->profile_pic() !!}@endslot
             @slot('title')<a href="https://twitch.tv/{{$streamer->name()}}" target="_blank">{{$streamer->name()}}</a>
             <br>

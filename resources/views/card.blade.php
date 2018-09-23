@@ -1,4 +1,4 @@
-<div class="content-card">
+<div class="content-card @isset($isStreaming) is-streaming @endif">
     <div class="content-card__header">
 
         @isset($views)
