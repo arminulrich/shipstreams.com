@@ -27,7 +27,7 @@ class Streamer
         $twitch = app(Twitch::class);
         $this->twitch_data = Cache::remember(
             $this->getCacheKey('user-result'),
-            60,
+            600,
             function () use ($twitch) {
                 return array_get(
                     $twitch->getUserByName($this->username)->data,
@@ -36,9 +36,10 @@ class Streamer
                 );
             }
         );
+
         $this->twitch_stream_data = Cache::remember(
             $this->getCacheKey('stream-data'),
-            60,
+            15,
             function () use ($twitch) {
                 return collect(
                     $twitch->getStreamsByUserId($this->user_id())->data
@@ -48,7 +49,7 @@ class Streamer
 
         $this->twitch_video_data = Cache::remember(
             $this->getCacheKey('video-data'),
-            60,
+            600,
             function () use ($twitch) {
                 return collect(
                     $twitch->getVideosByUser($this->user_id())->data
