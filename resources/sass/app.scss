@@ -35,3 +35,10 @@ $color-primary: $primary;
         }
     }
 }
+
+h1 {
+    font-size: 2rem;
+    @include respond-to(sm) {
+        font-size: 2.75rem;
+    }
+}

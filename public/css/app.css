@@ -10732,3 +10732,13 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+}
+
