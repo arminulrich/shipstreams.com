@@ -66,7 +66,9 @@
 
         <div class="container">
             <h1 class="text-center mb-3 font-weight-bold">🚢 shipstreams.com</h1>
-            <p class="font-weight-bold text-center mb-5">A list of People shipping live  (from <a href="https://wip.chat" target="_blank">🚧 wip.chat</a>)</p>
+            <p class="font-weight-bold text-center mb-5">A list of People shipping live.
+            <small class="text-muted">(from <a href="https://wip.chat" target="_blank">🚧 wip.chat</a>)</small>
+            </p>
 
             @if($online->get('online',collect())->count())
                 <h2 class="mb-4 text-center">Streaming</h2>
