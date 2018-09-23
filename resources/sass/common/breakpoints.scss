@@ -1,0 +1,7 @@
+@import "../../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+
+@include add-breakpoint("sm", 576px);
+@include add-breakpoint("until-tablet-only", 0 768px);
+@include add-breakpoint("md", 768px);
+@include add-breakpoint("lg", 992px);
+@include add-breakpoint("xl", 1200px);

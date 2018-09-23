@@ -1,0 +1,20 @@
+@mixin hover() {
+    &:hover,
+    &:active,
+    &:focus {
+        @content;
+    }
+}
+@function rem($pixels, $context: 16) {
+    @return #{$pixels/$context}rem;
+}
+
+@mixin font-regular() {
+    font-weight: 400;
+}
+@mixin font-medium() {
+    font-weight: 500;
+}
+@mixin font-bold() {
+    font-weight: 700;
+}
