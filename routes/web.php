@@ -9,6 +9,8 @@ Route::get('/', function () {
 
     $streamers->push(new \App\Streamer('swizec'));
     $streamers->push(new \App\Streamer('andrey_azimov'));
+    $streamers->push(new \App\Streamer('marcantoinefon'));
+    $streamers->push(new \App\Streamer('rameerez_'));
 
     //$streamers->push(new \App\Streamer('levelsio'));
     //$streamers->push(new \App\Streamer('lenilsonjr_'));
