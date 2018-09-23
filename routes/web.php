@@ -12,8 +12,8 @@ Route::get('/', function () {
     $streamers->push(new \App\Streamer('marcantoinefon'));
     $streamers->push(new \App\Streamer('rameerez_'));
 
-    //$streamers->push(new \App\Streamer('levelsio'));
-    //$streamers->push(new \App\Streamer('lenilsonjr_'));
+    $streamers->push(new \App\Streamer('levelsio'));
+    $streamers->push(new \App\Streamer('lenilsonjr_'));
     //$streamers->push(new \App\Streamer('arminulrich'));
 
     return view('welcome', compact('streamers'));
