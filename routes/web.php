@@ -14,6 +14,9 @@ Route::get('/', function () {
 
     $streamers->push(new \App\Streamer('levelsio'));
     $streamers->push(new \App\Streamer('lenilsonjr_'));
+
+    $streamers->push(new \App\Streamer('brunohplemos'));
+    $streamers->push(new \App\Streamer('stephenfjohnson'));
     //$streamers->push(new \App\Streamer('arminulrich'));
 
     return view('welcome', compact('streamers'));
