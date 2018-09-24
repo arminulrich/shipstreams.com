@@ -2,7 +2,7 @@
     <?php /** @var \App\Models\Streamer $streamer */ ?>
 @endsection
 <div class="col-12 col-md-6 col-lg-4">
-    <div class="streamer @if($streamer->twitch_username == "Andrey_Azimov") is-streaming @endif">
+    <div class="streamer @if($streamer->is_online) is-streaming @endif">
 
         <div class="streamer__image-wrap">
             <img class="streamer__image" src="{{$streamer->twitch_profile_image_url}}"/>
@@ -11,7 +11,7 @@
         @if($streamer->twitch_profile_description)
             <div class="streamer__description">{{$streamer->twitch_profile_description}}</div>
         @endif
-        @if($streamer->twitch_username == "Andrey_Azimov")
+        @if($streamer->is_online)
             <div class="streamer__status">
                 streaming now
             </div>
@@ -50,7 +50,7 @@
                 <i class="far fa-eye"></i> {{$streamer->twitch_views}}
             </div>
         </div>
-        @if($streamer->twitch_username == "Andrey_Azimov")
+        @if($streamer->is_online)
             <div class="streamer__footer-live">
                 <a target="_blank" href="{{$streamer->tweet_twitch_live_url}}" class="streamer__footer-live">
                     Tweet about this stream
