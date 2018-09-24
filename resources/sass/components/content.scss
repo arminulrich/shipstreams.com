@@ -1,269 +1,222 @@
-@keyframes blinker
-{
-  from
-  {
-    opacity: 1;
-  }
-  to
-  {
-    opacity: 0;
-  }
+@keyframes blinker {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
-.blink{
-  animation: blinker 1.2s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+.blink {
+    animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
 }
 
-.content
-{
-  &__block
-  {
-    ul,
-    ol
-    {
-      padding: 0;
-      padding-left: rem(20);
-      @include respond-to(md)
-      {
-        padding: 0;
-      }
-      li
-      {
-        &:not(:last-child)
-        {
-          margin-bottom: rem(7);
+.content {
+    &__block {
+        ul,
+        ol {
+            padding: 0;
+            padding-left: rem(20);
+            @include respond-to(md) {
+                padding: 0;
+            }
+            li {
+                &:not(:last-child) {
+                    margin-bottom: rem(7);
+                }
+            }
         }
-      }
-    }
 
-    @include respond-to(lg)
-    {
-      font-size: rem(18);
-    }
-
-    h1,
-    h2
-    {
-      font-size: rem(20);
-      @include respond-to(md)
-      {
-        font-size: rem(26);
-      }
-    }
-
-    h3
-    {
-      font-size: rem(18);
-      @include respond-to(md)
-      {
-        font-size: rem(20);
-      }
-    }
-
-    h4,
-    h5,
-    h6
-    {
-      font-size: rem(16);
-    }
-
-    line-height: 1.6em;
-    @include respond-to(md)
-    {
-      line-height: 1.7em;
-    }
-    p + h2,
-    p + h3,
-    p + h4,
-    p + h5,
-    p + h6,
-    ul + h2,
-    ul + h3,
-    ul + h4,
-    ul + h5,
-    ul + h6,
-    ol + h2,
-    ol + h3,
-    ol + h4,
-    ol + h5,
-    ol + h6
-    {
-      margin-top: rem(40);
-    }
-  }
-  &-card
-  {
-    &:not(.is-streaming){
-      opacity: .7;
-      -webkit-transform: translateY(2px);
-      transform: translateY(2px);
-      -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.05);
-      box-shadow: 0 2px 5px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.05);
-    }
-    a
-    {
-      font-weight: bold;
-    }
-    &__header
-    {
-      @include clearfix;
-      &:not(:last-child)
-      {
-        margin-bottom: 1.5rem;
-      }
-    }
-    > *
-    {
-      &:last-child
-      {
-        margin-bottom: 0;
-      }
-    }
-    @include clearfix;
-    &__image
-    {
-      max-width: 50px;
-      border-radius: 100%;
-      float: left;
-    }
-    &__caption
-    {
-      overflow: hidden;
-    }
-    background-color: #FFF;
-    box-shadow: 0 rem(2) rem(15) 0 rgba(0, 0, 0, 0.1);
-    border-radius: rem(10);
-    padding: rem(20);
-    margin-bottom: rem(18);
-    @include respond-to(md)
-    {
-      margin-bottom: rem(30);
-      padding: rem(35);
-    }
-    position: relative;
-
-    &__title
-    {
-      small
-      {
-        font-size: rem(18);
-        line-height: rem(22);
-      }
-      font-weight: bold;
-      font-size: rem(24);
-      line-height: rem(28);
-      // margin-bottom: rem(30);
-      overflow: hidden;
-      &-company
-      {
-        opacity: 0.5;
-        font-weight: bold;
-        font-size: rem(20);
-        letter-spacing: rem(1.8);
-        line-height: rem(30);
-        text-transform: uppercase;
-        margin-bottom: rem(30);
-      }
-    }
-    &__views
-    {
-      float: right;
-      font-weight: bold;
-      font-size: rem(22);
-      line-height: rem(22);
-    }
-
-    &--chart
-    {
-      padding: rem(20);
-      @include respond-to(md)
-      {
-        padding: rem(30);
-      }
-
-      .content-card__icon
-      {
-        float: left;
-
-        font-size: rem(35);
-        line-height: rem(50);
-      }
-      .content-card__number
-      {
-        font-size: rem(50);
-        line-height: rem(50);
-      }
-      .content-card__title
-      {
-        font-size: rem(20);
-      }
-    }
-
-    &--package
-    {
-      cursor: pointer;
-      padding: rem(10);
-      &:not(.is-active)
-      {
-        @include hover
-        {
-          .content-card__inner
-          {
-            background-color: rgba($color-primary, 0.1);
-          }
+        @include respond-to(lg) {
+            font-size: rem(18);
         }
-      }
 
-      &.is-active
-      {
-        .content-card__inner
-        {
-          background-color: rgba($color-primary, 0.2);
+        h1,
+        h2 {
+            font-size: rem(20);
+            @include respond-to(md) {
+                font-size: rem(26);
+            }
         }
-      }
-      .content-card__inner
-      {
-        ul
-        {
-          margin-bottom: 0;
-          li
-          {
-            margin-bottom: rem(3);
-          }
+
+        h3 {
+            font-size: rem(18);
+            @include respond-to(md) {
+                font-size: rem(20);
+            }
         }
+
+        h4,
+        h5,
+        h6 {
+            font-size: rem(16);
+        }
+
+        line-height: 1.6em;
+        @include respond-to(md) {
+            line-height: 1.7em;
+        }
+        p + h2,
+        p + h3,
+        p + h4,
+        p + h5,
+        p + h6,
+        ul + h2,
+        ul + h3,
+        ul + h4,
+        ul + h5,
+        ul + h6,
+        ol + h2,
+        ol + h3,
+        ol + h4,
+        ol + h5,
+        ol + h6 {
+            margin-top: rem(40);
+        }
+    }
+    &-card {
+        &:not(.is-streaming) {
+            opacity: 0.7;
+            -webkit-transform: translateY(2px);
+            transform: translateY(2px);
+            -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1),
+                0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1),
+                0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        a {
+            font-weight: bold;
+        }
+        &__header {
+            @include clearfix;
+            &:not(:last-child) {
+                margin-bottom: 1.5rem;
+            }
+        }
+        > * {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        @include clearfix;
+        &__image {
+            max-width: 50px;
+            border-radius: 100%;
+            float: left;
+        }
+        &__caption {
+            overflow: hidden;
+        }
+        background-color: #fff;
+        box-shadow: 0 rem(2) rem(15) 0 rgba(0, 0, 0, 0.1);
         border-radius: rem(10);
-        padding: rem(26);
-      }
-    }
-  }
-  &-group
-  {
-    margin-bottom: rem(60);
+        padding: rem(20);
+        margin-bottom: rem(18);
+        @include respond-to(md) {
+            margin-bottom: rem(30);
+            padding: rem(35);
+        }
+        position: relative;
 
-    @include respond-to(md)
-    {
-      margin-bottom: rem(100);
-    }
+        &__title {
+            small {
+                font-size: rem(18);
+                line-height: rem(22);
+            }
+            font-weight: bold;
+            font-size: rem(24);
+            line-height: rem(28);
+            // margin-bottom: rem(30);
+            overflow: hidden;
+            &-company {
+                opacity: 0.5;
+                font-weight: bold;
+                font-size: rem(20);
+                letter-spacing: rem(1.8);
+                line-height: rem(30);
+                text-transform: uppercase;
+                margin-bottom: rem(30);
+            }
+        }
+        &__views {
+            float: right;
+            font-weight: bold;
+            font-size: rem(22);
+            line-height: rem(22);
+        }
 
-    &__inner
-    {
-    }
-    &__title
-    {
-      font-weight: bold;
-      color: #19191C;
-      text-align: center;
-      padding: 0;
-      margin: 0;
+        &--chart {
+            padding: rem(20);
+            @include respond-to(md) {
+                padding: rem(30);
+            }
 
-      margin-bottom: rem(30);
-      font-size: rem(24);
+            .content-card__icon {
+                float: left;
 
-      @include respond-to(md)
-      {
-        margin-bottom: rem(50);
-        font-size: rem(30);
-      }
+                font-size: rem(35);
+                line-height: rem(50);
+            }
+            .content-card__number {
+                font-size: rem(50);
+                line-height: rem(50);
+            }
+            .content-card__title {
+                font-size: rem(20);
+            }
+        }
+
+        &--package {
+            cursor: pointer;
+            padding: rem(10);
+            &:not(.is-active) {
+                @include hover {
+                    .content-card__inner {
+                        background-color: rgba($color-primary, 0.1);
+                    }
+                }
+            }
+
+            &.is-active {
+                .content-card__inner {
+                    background-color: rgba($color-primary, 0.2);
+                }
+            }
+            .content-card__inner {
+                ul {
+                    margin-bottom: 0;
+                    li {
+                        margin-bottom: rem(3);
+                    }
+                }
+                border-radius: rem(10);
+                padding: rem(26);
+            }
+        }
     }
-  }
+    &-group {
+        margin-bottom: rem(60);
+
+        @include respond-to(md) {
+            margin-bottom: rem(100);
+        }
+
+        &__inner {
+        }
+        &__title {
+            font-weight: bold;
+            color: #19191c;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+
+            margin-bottom: rem(30);
+            font-size: rem(24);
+
+            @include respond-to(md) {
+                margin-bottom: rem(50);
+                font-size: rem(30);
+            }
+        }
+    }
 }

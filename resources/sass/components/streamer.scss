@@ -1,0 +1,191 @@
+$module: "streamer";
+
+.#{$module} {
+    height: 100%;
+
+    background-color: #fff;
+    box-shadow: 0 rem(2) rem(15) 0 rgba(0, 0, 0, 0.1);
+    border-radius: rem(10);
+    padding: rem(20);
+    @include respond-to(md) {
+        padding: rem(30);
+    }
+    position: relative;
+    &__list {
+        > .row {
+            > div {
+                padding-bottom: rem(30);
+            }
+        }
+    }
+
+    @include flexbox();
+    @include justify-content(space-between);
+    @include flex-direction(column);
+    @include align-content(center);
+    text-align: center;
+
+    &__image {
+        &-wrap {
+            width: 120px;
+            height: 120px;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: rem(20);
+        }
+        max-width: 100%;
+        border-radius: 100%;
+    }
+
+    &__name {
+        margin-top: 0;
+        margin-bottom: rem(10);
+
+        /* andrey_azimov: */
+        font-weight: bold;
+        font-size: 25px;
+        line-height: rem(30);
+        color: #000000;
+    }
+    &__description {
+        margin-top: 0;
+        margin-bottom: rem(30);
+
+        font-weight: bold;
+        font-size: 14px;
+        color: #8c8c8c;
+        text-align: center;
+        line-height: rem(17);
+    }
+    &.is-streaming {
+        overflow: hidden;
+
+        .#{$module}__image-wrap {
+            position: relative;
+            &:before {
+                background-color: #ff5567;
+                width: rem(27);
+                height: rem(27);
+                position: absolute;
+                top: 0;
+                right: 0;
+                content: "";
+                border-radius: 100%;
+                animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite
+                    alternate;
+            }
+        }
+        .#{$module}__status {
+            line-height: rem(38);
+            /* STREAMING NOW: */
+            color: #ff5567;
+            text-transform: uppercase;
+
+            animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite
+                alternate;
+        }
+
+        padding-bottom: rem(75);
+        @include respond-to(md) {
+            padding-bottom: rem(85);
+        }
+    }
+    &__status {
+        margin-top: auto;
+        margin-bottom: rem(28);
+
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: bold;
+
+        strong {
+            display: block;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+            margin-bottom: rem(4);
+        }
+        a {
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    &__footer {
+        @include clearfix;
+        > * {
+        }
+        &-social {
+            line-height: rem(20);
+
+            text-align: left;
+            float: left;
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    display: inline-block;
+                    &:not(:last-child) {
+                        margin-right: rem(3);
+                    }
+                    a {
+                        background: #000000;
+                        color: #fff;
+                        border-radius: rem(5);
+                        text-align: center;
+                        font-size: rem(12);
+                        display: inline-block;
+                        width: rem(20);
+                        height: rem(20);
+                    }
+                }
+            }
+        }
+        &-views {
+            text-align: right;
+            float: right;
+
+            /* 6.286: */
+            font-weight: bold;
+            font-size: 14px;
+            color: #000000;
+            line-height: rem(20);
+        }
+        &-live {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            a {
+                display: block;
+                background-color: $primary;
+                color: #fff;
+                height: 55px;
+
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 55px;
+                color: #ffffff;
+                text-align: center;
+                text-transform: uppercase;
+
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: none;
+                    background-color: darken($primary, 9%);
+                }
+            }
+        }
+    }
+}

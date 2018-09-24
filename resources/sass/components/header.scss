@@ -1,0 +1,56 @@
+$module: "header";
+
+.#{$module} {
+    height: rem(89);
+    border-bottom: 1px solid #e4e4fa;
+    background-color: #fff;
+    margin-bottom: rem(140);
+    &__logo {
+        width: rem(152);
+        height: rem(141);
+        float: left;
+    }
+    &__social {
+        height: rem(89);
+
+        /* follow @shipstreams: */
+        font-weight: bold;
+        font-size: rem(14);
+        line-height: rem(18);
+        text-align: right;
+
+        @include flexbox;
+        @include justify-content(center);
+        @include flex-direction(column);
+        span {
+            display: block;
+        }
+    }
+    &__headlines {
+        margin-bottom: rem(100);
+        text-align: left;
+        > h1 {
+            opacity: 0.4;
+            font-weight: bold;
+
+            font-size: 16px;
+            @include respond-to(sm) {
+                font-size: 24px;
+            }
+
+            color: #000000;
+            text-transform: uppercase;
+        }
+        > p {
+            font-size: rem(40);
+            @include respond-to(sm) {
+                font-size: rem(70);
+            }
+
+            /* A list of makers shi: */
+            font-weight: bold;
+            line-height: 1.1em;
+            color: #000000;
+        }
+    }
+}

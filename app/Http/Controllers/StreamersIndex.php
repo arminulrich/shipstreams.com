@@ -1,0 +1,24 @@
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class StreamersIndex extends Controller
+{
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __invoke(Request $request)
+    {
+        $streamers = \App\Models\Streamer
+            ::orderBy('last_online', 'DESC')
+            ->orderBy('twitch_username', 'ASC')
+            ->get();
+
+        return view('streamers.index', compact('streamers'));
+    }
+}
