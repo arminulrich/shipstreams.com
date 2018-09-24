@@ -27,8 +27,8 @@ $module: "streamer";
 
     &__image {
         &-wrap {
-            width: 120px;
-            height: 120px;
+            width: rem(120);
+            height: rem(120);
 
             margin-left: auto;
             margin-right: auto;
@@ -45,7 +45,7 @@ $module: "streamer";
 
         /* andrey_azimov: */
         font-weight: bold;
-        font-size: 25px;
+        font-size: rem(25);
         line-height: rem(30);
         color: #000000;
 
@@ -102,8 +102,8 @@ $module: "streamer";
         margin-top: auto;
         margin-bottom: rem(28);
 
-        font-size: 14px;
-        line-height: 17px;
+        font-size: rem(14);
+        line-height: rem(17);
         font-weight: bold;
 
         strong {
@@ -156,7 +156,7 @@ $module: "streamer";
 
             /* 6.286: */
             font-weight: bold;
-            font-size: 14px;
+            font-size: rem(14);
             color: #000000;
             line-height: rem(20);
         }
@@ -170,11 +170,11 @@ $module: "streamer";
                 display: block;
                 background-color: $primary;
                 color: #fff;
-                height: 55px;
+                height: rem(55);
 
                 font-weight: bold;
-                font-size: 14px;
-                line-height: 55px;
+                font-size: rem(14);
+                line-height: rem(55);
                 color: #ffffff;
                 text-align: center;
                 text-transform: uppercase;

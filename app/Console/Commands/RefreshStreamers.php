@@ -82,7 +82,7 @@ class RefreshStreamers extends Command
             })
             ->transform(function ($streamer) use ($twitch) {
                 // - fetch videos and sleep 3 sec so we dont get over api limit
-                $user_id = data_get($streamer, 'data.twitch.user.id');
+                $user_id = data_get($streamer, 'data.twitch.user.id', 0);
 
                 array_set(
                     $streamer,

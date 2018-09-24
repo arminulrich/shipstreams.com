@@ -68,5 +68,10 @@
     "twitch_username": "petecodes",
     "twitter":"petecodes",
     "website":"https://www.nomadflights.io/"
+  },
+  {
+    "twitch_username": "arminulrich",
+    "twitter":"arminulrich",
+    "website":"https://madewithvuejs.com"
   }
 ]

@@ -9,6 +9,7 @@ $module: "header";
         width: rem(152);
         height: rem(141);
         float: left;
+        margin: rem(15);
     }
     &__social {
         height: rem(89);
@@ -33,9 +34,9 @@ $module: "header";
             opacity: 0.4;
             font-weight: bold;
 
-            font-size: 16px;
+            font-size: rem(16);
             @include respond-to(sm) {
-                font-size: 24px;
+                font-size: rem(24);
             }
 
             color: #000000;
