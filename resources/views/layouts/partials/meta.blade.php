@@ -3,8 +3,8 @@
 
 <title>shipstreams.com</title>
 
-<meta name="description" content="A list of Makers shipping live">
-<meta name="og:description" content="A list of Makers shipping live">
+<meta name="description" content="A list of makers shipping live">
+<meta name="og:description" content="A list of makers shipping live">
 
 
 <!-- Facebook OG Image -->
