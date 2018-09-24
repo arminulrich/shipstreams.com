@@ -103,6 +103,14 @@ class Streamer extends Model
 
     public function getIsOnlineAttribute()
     {
+        // - for local testing
+        if (
+            app()->environment() != 'production' &&
+            $this->twitch_username == 'Andrey_Azimov'
+        ) {
+            return true;
+        }
+
         if (!$this->last_online) {
             return false;
         }

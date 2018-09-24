@@ -48,6 +48,12 @@ $module: "streamer";
         font-size: 25px;
         line-height: rem(30);
         color: #000000;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #000000;
+        }
     }
     &__description {
         margin-top: 0;
@@ -69,8 +75,8 @@ $module: "streamer";
                 width: rem(27);
                 height: rem(27);
                 position: absolute;
-                top: 0;
-                right: 0;
+                top: rem(5);
+                right: rem(5);
                 content: "";
                 border-radius: 100%;
                 animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite

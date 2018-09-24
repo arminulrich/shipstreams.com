@@ -3,11 +3,12 @@
 @endsection
 <div class="col-12 col-md-6 col-lg-4">
     <div class="streamer @if($streamer->is_online) is-streaming @endif">
-
         <div class="streamer__image-wrap">
-            <img class="streamer__image" src="{{$streamer->twitch_profile_image_url}}"/>
+            <a target="_blank" href="{{$streamer->twitch_url}}">
+                <img class="streamer__image" src="{{$streamer->twitch_profile_image_url}}"/>
+            </a>
         </div>
-        <div class="streamer__name">{{$streamer->twitch_username}}</div>
+        <a target="_blank" href="{{$streamer->twitch_url}}" class="streamer__name">{{$streamer->twitch_username}}</a>
         @if($streamer->twitch_profile_description)
             <div class="streamer__description">{{$streamer->twitch_profile_description}}</div>
         @endif
