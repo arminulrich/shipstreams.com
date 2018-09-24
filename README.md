@@ -4,7 +4,7 @@
 
 ## Want to add yourself?
 
-send a PR for: `./app/streamers.json`
+send a PR for: [./app/streamers.json](../../blob/master/app/streamers.json)
 
 ```json
 {
@@ -22,3 +22,5 @@ Nothing else is documented and might never be! 😅
 
 - [Armin](https://twitter.com/arminulrich)
 - [All Contributors](../../contributors)
+
+
