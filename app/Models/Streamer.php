@@ -156,14 +156,14 @@ class Streamer extends Model
     {
         if ($this->twitter) {
             $text =
-                '🚀 @' .
+                '🚢 @' .
                 $this->twitter .
                 ' is now shipping live on Twitch! ' .
                 $this->twitch_url .
                 ' via @shipstreams';
         } else {
             $text =
-                '⭐️ ' .
+                '🚢️ ' .
                 $this->twitch_username .
                 ' is now shipping live on Twitch! ' .
                 $this->twitch_url .
