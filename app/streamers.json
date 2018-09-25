@@ -73,5 +73,10 @@
     "twitch_username": "arminulrich",
     "twitter":"arminulrich",
     "website":"https://madewithvuejs.com"
+  },
+  {
+    "twitch_username": "jakeacasey",
+    "twitter":"jakeacasey",
+    "website":null
   }
 ]
