@@ -158,12 +158,16 @@ class Streamer extends Model
             $text =
                 '🚀 @' .
                 $this->twitter .
-                ' is now shipping live on Twitch! via @shipstreams';
+                ' is now shipping live on Twitch! ' .
+                $this->twitch_url .
+                ' via @shipstreams';
         } else {
             $text =
                 '⭐️ ' .
                 $this->twitch_username .
-                ' is now shipping live on Twitch! via @shipstreams';
+                ' is now shipping live on Twitch! ' .
+                $this->twitch_url .
+                ' via @shipstreams';
         }
 
         $url = "https://twitter.com/intent/tweet?text=" . $text;
