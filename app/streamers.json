@@ -5,6 +5,11 @@
     "website":"https://dailyvibes.ca/"
   },
   {
+    "twitch_username": "ok_samandar",
+    "twitter":"ok_samandar",
+    "website":"https://nanobrain.io/"
+  },
+  {
     "twitch_username": "patwalls",
     "twitter":"thepatwalls",
     "website":"https://starterstory.com/"
@@ -88,10 +93,5 @@
     "twitch_username": "ndethore",
     "twitter":"ndethore",
     "website":"https://nicolasdethore.com"
-  },
-  {
-    "twitch_username": "madamelic",
-    "twitter":"madamelic",
-    "website":"https://qnzl.co"
-  }
+  }  
 ]
