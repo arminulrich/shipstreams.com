@@ -1,0 +1,110 @@
+$module: "twitch-panel";
+
+.#{$module} {
+    margin-bottom: rem(70);
+    .card-body {
+        padding: 0;
+    }
+    &__wrap {
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 576px) {
+            min-height: rem(316);
+        }
+
+        // Medium devices (tablets, 768px and up)
+        @media (min-width: 768px) {
+            min-height: rem(417);
+        }
+
+        // Large devices (desktops, 992px and up)
+        @media (min-width: 992px) {
+            min-height: rem(552);
+        }
+
+        // Extra large devices (large desktops, 1200px and up)
+        @media (min-width: 1200px) {
+            min-height: rem(653);
+        }
+    }
+
+    &__head {
+        @include clearfix;
+        margin-bottom: rem(16);
+        &-image {
+            max-width: 35px;
+            border-radius: 100%;
+            float: left;
+            margin-right: 1rem;
+        }
+        &-link {
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: none;
+            }
+        }
+        &-name {
+            display: block;
+            span {
+                color: $red;
+                text-transform: uppercase;
+                animation: blinker 1.2s cubic-bezier(0.5, 0, 1, 1) infinite
+                    alternate;
+            }
+            /* andrey_azimov: */
+            font-weight: bold;
+            font-size: rem(21);
+            line-height: rem(35);
+            color: #000000;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: #000000;
+            }
+        }
+    }
+    &__iframe {
+    }
+
+    &__avatars {
+        float: left;
+        width: rem(70);
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            li {
+                cursor: pointer;
+                padding: 0;
+                margin: 0;
+
+                -webkit-transition: opacity 0.3s;
+                -moz-transition: opacity 0.3s;
+                -ms-transition: opacity 0.3s;
+                -o-transition: opacity 0.3s;
+                transition: opacity 0.3s;
+                opacity: 0.6;
+                &.is-active {
+                    opacity: 1;
+                }
+                &:not(:last-child) {
+                    margin-bottom: rem(10);
+                }
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+        img {
+            border-radius: 100%;
+            max-width: rem(50);
+        }
+
+        a {
+        }
+    }
+    &__inner {
+        overflow: hidden;
+    }
+}

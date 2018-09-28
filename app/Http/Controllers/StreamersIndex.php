@@ -20,6 +20,11 @@ class StreamersIndex extends Controller
             ->orderBy('twitch_username', 'ASC')
             ->get();
 
-        return view('streamers.index', compact('streamers'));
+        $streamers_online = $streamers->where('is_online', true)->shuffle();
+
+        return view(
+            'streamers.index',
+            compact('streamers', 'streamers_online')
+        );
     }
 }

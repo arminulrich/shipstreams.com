@@ -19,6 +19,8 @@ Vue.component(
     require("./components/ExampleComponent.vue")
 );
 
+Vue.component("twitch-panel", require("./components/TwitchPanel.vue"));
+
 const app = new Vue({
     el: "#app"
 });

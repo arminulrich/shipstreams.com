@@ -31,6 +31,8 @@ class Streamer extends Model
     ];
     protected $casts = ['data' => 'array', 'last_online' => 'datetime'];
 
+    protected $appends = ['twitch_profile_image_url'];
+
     public function setIsOnlineAttribute($val)
     {
         if ($val) {
