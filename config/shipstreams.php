@@ -1,2 +1,2 @@
 <?php
-return ["ph-alert" => ["show" => true, "url" => "https://producthunt.com"]];
+return ["ph-alert" => ["show" => false, "url" => "https://producthunt.com"]];
