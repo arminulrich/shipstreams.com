@@ -117,10 +117,10 @@ class Streamer extends Model
             return false;
         }
 
-        // - if "was online in the last 30 mins" - return true
+        // - if "was online in the last 5 mins" - return true
         return (
             $this->last_online->timestamp >
-            (new Carbon())->subMinutes(30)->timestamp
+            (new Carbon())->subMinutes(10)->timestamp
         );
     }
 
