@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Providers;
 
+use App\Events\StreamerWentOnline;
+use App\Listeners\SendStreamerNotifications;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -15,9 +16,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
+        Registered::class => [SendEmailVerificationNotification::class],
+        StreamerWentOnline::class => [SendStreamerNotifications::class]
     ];
 
     /**

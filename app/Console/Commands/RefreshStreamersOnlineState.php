@@ -1,6 +1,7 @@
 <?php
 namespace App\Console\Commands;
 
+use App\Events\StreamerWentOnline;
 use App\Models\Streamer;
 use Illuminate\Console\Command;
 use Psy\Util\Str;

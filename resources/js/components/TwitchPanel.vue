@@ -17,7 +17,7 @@
                                 <a class="twitch-panel__head-link" target="_blank" :href="streamer_selected.twitch_url">
                                     <img v-if="streamers.length == 1" :src="streamer_selected.twitch_profile_image_url" class="twitch-panel__head-image"/>
                                     <span class="twitch-panel__head-name">
-                                        {{streamer_selected.twitch_username}} is <span>streaming now</span>
+                                        {{streamer_selected.twitch_displayname}} is <span>streaming now</span>
                                     </span>
                                 </a>
                             </div>

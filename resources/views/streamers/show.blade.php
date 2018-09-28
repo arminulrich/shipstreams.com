@@ -25,31 +25,31 @@
     <h1 class="sr-only">{{$streamer->twitch_displayname}}</h1>
 @endsection
 
-<?PHP
-/** @var \App\Models\Streamer $streamer */
-?>
 @section('content')
 
     <div class="twitch-panel__wrap">
         <twitch-panel :streamers='@json([$streamer])'></twitch-panel>
     </div>
 
+    @if($streamer->is_online)
+        <a class="font-weight-bold text-danger" target="_blank" href="{{$streamer->tweet_twitch_live_url}}">
+            <i class="fab fa-twitter"></i>
+            Tweet about this stream</a>
+    @endif        
+    <br>
     <a class="font-weight-bold" href="{{$streamer->twitch_url}}" target="_blank">
         <i class="fab fa-twitch"></i>
-        Watch it on Twitch 
-    </a>
+        Watch it on Twitch</a>
     @if($streamer->twitter)
         <br>
         <a class="font-weight-bold" href="https://twitter.com/{{$streamer->twitter}}" target="_blank">
             <i class="fab fa-twitter"></i>
-            Follow {{$streamer->twitter}} on Twitter 
-        </a>
+            Follow {{$streamer->twitter}} on Twitter</a>
     @endif
     @if($streamer->website)
         <br>
         <a class="font-weight-bold" href="{{$streamer->website}}" target="_blank">
             <i class="fas fa-link"></i>
-            {{basename($streamer->website)}}
-        </a>
+            {{basename($streamer->website)}}</a>
     @endif
 @endsection

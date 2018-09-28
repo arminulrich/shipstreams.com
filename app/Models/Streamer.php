@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Events\StreamerWentOnline;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,11 +33,24 @@ class Streamer extends Model
     ];
     protected $casts = ['data' => 'array', 'last_online' => 'datetime'];
 
-    protected $appends = ['twitch_profile_image_url', 'twitch_url'];
+    protected $appends = [
+        'twitch_profile_image_url',
+        'twitch_url',
+        'twitch_displayname'
+    ];
 
     public function setIsOnlineAttribute($val)
     {
         if ($val) {
+            if ($this->last_online) {
+                if (
+                    $this->last_online->timestamp <
+                    (new Carbon())->subHours(4)->timestamp
+                ) {
+                    event(new StreamerWentOnline($this));
+                }
+            }
+
             $this->attributes['last_online'] = new Carbon();
         }
     }
