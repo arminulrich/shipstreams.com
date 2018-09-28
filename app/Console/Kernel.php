@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('refresh:streamers')->hourly();
-        $schedule->command('refresh:streamers_online')->everyFifteenMinutes();
+        $schedule->command('refresh:streamers_online')->everyFiveMinutes();
     }
 
     /**
