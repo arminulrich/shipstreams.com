@@ -8,7 +8,7 @@
                 <img class="streamer__image" src="{{$streamer->twitch_profile_image_url}}"/>
             </a>
         </div>
-        <a target="_blank" href="{{$streamer->twitch_url}}" class="streamer__name">{{$streamer->twitch_username}}</a>
+        <a target="_blank" href="{{$streamer->twitch_url}}" class="streamer__name">{{$streamer->twitch_displayname}}</a>
         @if($streamer->twitch_profile_description)
             <div class="streamer__description">{{$streamer->twitch_profile_description}}</div>
         @endif

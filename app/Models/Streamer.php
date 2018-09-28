@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property String $twitch_profile_description
  * @property String $tweet_twitch_live_url
  * @property String $twitch_url
+ * @property String $shipstreams_url
  * @property String $website
  * @property String $twitter
  * @property Carbon $last_online
@@ -108,7 +109,7 @@ class Streamer extends Model
         // - for local testing
         if (
             app()->environment() != 'production' &&
-            $this->twitch_username == 'Andrey_Azimov'
+            $this->twitch_username == 'andrey_azimov'
         ) {
             return true;
         }
@@ -137,7 +138,12 @@ class Streamer extends Model
         return 'https://twitch.tv/' . $this->twitch_username;
     }
 
-    public function getTwitchUsernameAttribute()
+    public function getShipstreamsUrlAttribute()
+    {
+        return url($this->twitch_username);
+    }
+
+    public function getTwitchDisplaynameAttribute()
     {
         return array_get($this->data, 'twitch.user.display_name', '');
     }
@@ -166,14 +172,14 @@ class Streamer extends Model
                 '🚢 @' .
                 $this->twitter .
                 ' is now shipping live on Twitch! ' .
-                $this->twitch_url .
+                $this->shipstreams_url .
                 ' via @shipstreams';
         } else {
             $text =
                 '🚢️ ' .
                 $this->twitch_username .
                 ' is now shipping live on Twitch! ' .
-                $this->twitch_url .
+                $this->shipstreams_url .
                 ' via @shipstreams';
         }
 

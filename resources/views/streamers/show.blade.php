@@ -4,10 +4,10 @@
     @include('layouts.partials.meta')
 
 
-    <title>{{$streamer->twitch_username}} - shipstreams.com</title>
+    <title>{{$streamer->twitch_displayname}} - shipstreams.com</title>
 
-    <meta name="description" content="{{$streamer->twitch_username}} is streaming now on Twitch">
-    <meta name="og:description" content="{{$streamer->twitch_username}} is streaming now on Twitch">
+    <meta name="description" content="{{$streamer->twitch_displayname}} is streaming now on Twitch">
+    <meta name="og:description" content="{{$streamer->twitch_displayname}} is streaming now on Twitch">
 
 
     <!-- Facebook OG Image -->
@@ -22,7 +22,7 @@
 @endsection
 
 @section('header')
-    <h1 class="sr-only">{{$streamer->twitch_username}}</h1>
+    <h1 class="sr-only">{{$streamer->twitch_displayname}}</h1>
 @endsection
 
 <?PHP
