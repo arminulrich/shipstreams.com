@@ -124,6 +124,11 @@ class Streamer extends Model
         );
     }
 
+    public function getOgImageTextAttribute()
+    {
+        return $this->twitch_username . ' is shipping live now! 🚢';
+    }
+
     /*
      * Twitch Stuff
      */

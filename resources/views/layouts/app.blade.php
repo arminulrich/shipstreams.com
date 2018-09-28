@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    @include('layouts.partials.meta')
+    @yield('meta')
 </head>
 <body>
 <div id="app">

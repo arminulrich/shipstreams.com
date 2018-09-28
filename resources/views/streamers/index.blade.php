@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta')
+    @include('layouts.partials.meta')
+    @include('layouts.partials.meta-seo')
+@endsection
 @section('header')
 
     <div class="container">

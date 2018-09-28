@@ -7,3 +7,4 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/submit', 'SubmitController@show')->name('submit');
     Route::post('/submit', 'SubmitController@store');
 });
+Route::get('/{slug}', 'StreamersShow');
