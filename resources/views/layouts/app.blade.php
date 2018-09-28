@@ -6,6 +6,13 @@
 <body>
 <div id="app">
 
+    @if(config('shipstreams.ph-alert.show'))
+        <a href="{{config('shipstreams.ph-alert.url')}}" target="_blank" class="ph-alert">
+            We are live on Product Hunt right meow! 😻
+        </a>
+    @endif
+    
+    
     @include('layouts.partials.header')
     <div class="container mt-5 mb-4">
 

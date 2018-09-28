@@ -1,0 +1,28 @@
+$module: "ph-alert";
+
+.#{$module} {
+    text-align: center;
+    font-weight: bold;
+    background-color: #da552f;
+    color: #fff;
+    padding: rem(10) rem(10);
+    display: block;
+
+    color: #fff;
+    text-decoration: none;
+
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: darken(#da552f, 8%);
+        color: #fff;
+
+        text-decoration: none;
+    }
+}
