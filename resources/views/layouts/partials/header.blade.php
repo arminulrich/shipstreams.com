@@ -1,6 +1,6 @@
 <header class="header">
     <div class="container">
-        <div class="header__logo">
+        <a href="/" class="header__logo">
             <svg width="170px" height="158px" viewBox="0 0 170 158" version="1.1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
@@ -65,7 +65,7 @@
                     </g>
                 </g>
             </svg>
-        </div>
+        </a>
         <div class="header__social">
             <span>
                 
@@ -76,10 +76,3 @@
         </div>
     </div>
 </header>
-
-<div class="container">
-    <div class="header__headlines">
-        <h1>shipstreams</h1>
-        <p> A list of makers <br> shipping live. </p>
-    </div>
-</div>

@@ -11,9 +11,11 @@
             We are live on Product Hunt right meow! 😻
         </a>
     @endif
-    
-    
+        
     @include('layouts.partials.header')
+        
+    @yield('header')
+        
     <div class="container mt-5 mb-4">
 
         <div class="mt-5 mb-4 ">
