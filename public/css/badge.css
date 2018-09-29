@@ -1,57 +1,57 @@
 @-webkit-keyframes width-anim {
 	from {
+		max-width: 0px
+	}
+	1.5% {
 		max-width: 0px;
 	}
-	0.5% {
-		max-width: 0px;
-	}
-	0.75% {
+	1.75% {
 		max-width: 750px;
 	}
-	3% {
+	9% {
 		max-width: 750px;
 	}
-	3.25% {
-		max-width: 0px;
+	9.25% {
+		max-width: 0;
 	}
 	to {
-		max-width: 0px;
+		max-width: 0;
 	}
 }
 @keyframes width-anim {
 	from {
-		max-width: 0px;
+		max-width: 0;
 	}
-	0.5% {
-		max-width: 0px;
+	1.5% {
+		max-width: 0;
 	}
-	0.75% {
+	1.75% {
 		max-width: 750px;
 	}
-	3% {
+	9% {
 		max-width: 750px;
 	}
-	3.25% {
-		max-width: 0px;
+	9.25% {
+		max-width: 0;
 	}
 	to {
-		max-width: 0px;
+		max-width: 0;
 	}
 }
 @-webkit-keyframes opacity-anim {
 	from {
 		opacity: 0;
 	}
-	0.75% {
+	1.75% {
 		opacity: 0;
 	}
-	0.8% {
+	2.4% {
 		opacity: 1;
 	}
-	2.95% {
+	8.3% {
 		opacity: 1;
 	}
-	3% {
+	9% {
 		opacity: 0;
 	}
 	to {
@@ -62,16 +62,16 @@
 	from {
 		opacity: 0;
 	}
-	0.75% {
+	1.75% {
 		opacity: 0;
 	}
-	0.8% {
+	2.4% {
 		opacity: 1;
 	}
-	2.95% {
+	8.3% {
 		opacity: 1;
 	}
-	3% {
+	9% {
 		opacity: 0;
 	}
 	to {
@@ -84,15 +84,15 @@
 
 .message-container {
 	width: 100%;
-	max-width: 0px;
+	max-width: 750px;
 	height: 4rem;
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 	position: absolute;
 	background: white;
 	top: calc(79px - 2rem);
 	left: 140px;
-	-webkit-animation: width-anim 600s ease-in-out infinite;
-	animation: width-anim 600s ease-in-out infinite;
+	-webkit-animation: width-anim 180s ease-in-out infinite;
+	animation: width-anim 180s ease-in-out infinite;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -102,12 +102,8 @@
 }
 
 p {
-	-webkit-animation: opacity-anim 600s ease-in-out infinite;
-	animation: opacity-anim 600s ease-in-out infinite;
-}
-
-span {
-	color: #FF5467;
+	-webkit-animation: opacity-anim 180s ease-in-out infinite;
+	animation: opacity-anim 180s ease-in-out infinite;
 }
 
 svg {
@@ -119,3 +115,7 @@ body {
 	background: darkgray;
 	font-family: "proxima-soft", sans-serif;
 }
+
+span, .website-text { color: #FF5467; }
+.twitter-text { color: #1da1f2; }
+.youtube-text { color: #ff0000; }

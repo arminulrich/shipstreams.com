@@ -15,7 +15,11 @@ class BadgeShow extends Controller
     public function __invoke(Request $request)
     {
         $tagline = $request->get('tagline', 'where makers ship live');
+        $twitter = $request->get('twitter');
+        $youtube = $request->get('youtube');
+        $website = $request->get('website');
+        $customMessage = $request->get('customMessage');
 
-        return view('badge.show', compact('tagline'));
+        return view('badge.show', compact('tagline', 'twitter', 'youtube', 'website', 'customMessage'));
     }
 }
