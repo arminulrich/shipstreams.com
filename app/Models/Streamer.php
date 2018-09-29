@@ -49,6 +49,8 @@ class Streamer extends Model
                 ) {
                     event(new StreamerWentOnline($this));
                 }
+            } else {
+                event(new StreamerWentOnline($this));
             }
 
             $this->attributes['last_online'] = new Carbon();
