@@ -69,7 +69,8 @@
         <div class="header__social">
             <span>
                 
-            follow <a target="_blank" href="https://twitter.com/shipstreams">@shipstreams</a> by <a target="_blank"
+            follow <a target="_blank" href="https://twitter.com/shipstreams"><i class="fab fa-twitter"></i> @shipstreams</a> 
+                or <a target="_blank" href="https://t.me/shipstreams"><i class="fab fa-telegram-plane"></i> shipstreams</a> by <a target="_blank"
                                                                                                     href="https://twitter.com/arminulrich">@arminulrich</a>
         
             </span>
