@@ -5,6 +5,7 @@
     <title>A Badge by Richard Blechinger 👏 </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/badge.css">
 </head>
 
@@ -77,17 +78,37 @@
     </svg>
 
     <div class="message-container">
-        <p class="opacity-anim">
-            <span>shipstreams.com</span>
-            - {{$tagline}}
+        <p id="message" class="opacity-anim">
+            <span>shipstreams.com</span> - {{$tagline}}
         </p>
     </div>
 </div>
 
 
 <script type="text/javascript">
-    var countdown = 602250;
+    //var countdown = 602250;
+    var messageCycle = 1;
     var logo = document.querySelector('svg');
+    var messages = [
+      "<span>shipstreams.com</span> - {{ $tagline }}",
+    ]
+
+    @if ($customMessage)
+      messages.push("{{ $customMessage }}")
+    @endif
+
+    @if ($twitter)
+      messages.push('<span class="twitter-text"><i class="fa fa-twitter fa-lg"></i> Find me on Twitter:</span> {{ $twitter }}')
+    @endif
+
+    @if ($youtube)
+      messages.push('<span class="youtube-text"><i class="fa fa-youtube-play fa-lg"></i> Find me on YouTube:</span> {{ $youtube }}')
+    @endif
+
+    @if ($website)
+      messages.push('<span class="website-text"><i class="fa fa-globe fa-lg"></i> Visit my website:</span> {{ $website }}')
+    @endif
+
     var addTada = function addTada() {
         logo.classList.add('tada');
     };
@@ -96,12 +117,22 @@
         setTimeout(addTada, 2250);
     };
 
+    var cycleMessage = function cycleMessage() {
+      document.querySelector('#message').innerHTML = messages[messageCycle]
+      messageCycle++;
+
+      if (messageCycle > messages.length-1) {
+        messageCycle = 0;
+      }
+    }
+
     logo.addEventListener('animationend', function () {
         logo.classList.remove('tada');
     });
 
     makeTada();
-    setInterval(makeTada, 600000);
+    setInterval(makeTada, 180000);
+    setInterval(cycleMessage, 180000);
 </script>
 
 
