@@ -181,7 +181,7 @@ class Streamer extends Model
         );
     }
 
-    public function getTweetTwitchLiveUrlAttribute()
+    public function getTweetTwitchLiveTextAttribute()
     {
         if ($this->twitter) {
             $text =
@@ -198,8 +198,13 @@ class Streamer extends Model
                 $this->shipstreams_url .
                 ' via @shipstreams';
         }
-
-        $url = "https://twitter.com/intent/tweet?text=" . $text;
+        return $text;
+    }
+    public function getTweetTwitchLiveUrlAttribute()
+    {
+        $url =
+            "https://twitter.com/intent/tweet?text=" .
+            $this->tweet_twitch_live_text;
         return $url;
     }
 }
