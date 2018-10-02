@@ -22,10 +22,11 @@ $module: "header";
         text-align: right;
 
         @include flexbox;
-        @include justify-content(center);
-        @include flex-direction(column);
+        @include justify-content(flex-end);
+        @include align-items(center);
+        @include flex-direction(row);
         span {
-            display: block;
+            display: inline-block;
         }
     }
     &__headlines {
@@ -55,4 +56,12 @@ $module: "header";
             color: #000000;
         }
     }
+    &__intro {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+}
+
+.#{$module} .guides {
+    color: $red;
 }

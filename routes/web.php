@@ -1,6 +1,7 @@
 <?php
 Route::get('/', 'StreamersIndex');
 Route::get('/badge', 'BadgeShow');
+Route::get('/resources', 'KitController@show');
 
 Route::group(['middleware' => 'web'], function () {
     // - Submit form

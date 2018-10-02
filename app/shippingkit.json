@@ -1,0 +1,36 @@
+[
+    {
+        "link": "https://obsproject.com",
+        "title": "Open Broadcaster Software",
+        "description": "Open Broadcaster Software (OBS) is what you use to record your screen/webcam and stream it.",
+        "topics": [ "Getting started", "OBS" ]
+    },
+
+    {
+        "link": "https://www.lifewire.com/twitch-streaming-with-obs-studio-4151808",
+        "title": "Setting up your stream",
+        "description": "A complete overview on setting up OBS from connecting to Twitch to making a stream layout.",
+        "topics": [ "Getting started", "OBS", "Twitch" ]
+    },
+
+    {
+        "link": "https://obsproject.com/forum/threads/guide-how-to-stream-to-youtube.4333/",
+        "title": "Streaming to YouTube",
+        "description": "Should you prefer to stream to YouTube instead of Twitch, this guide is for you!",
+        "topics": [ "Getting started", "OBS", "YouTube" ]
+    },
+
+    {
+        "link": "https://obsproject.com/forum/resources/os-x-capture-audio-with-ishowu-audio-capture.505/",
+        "title": "Recording audio on Mac",
+        "description": "Learn how to easily record the audio on your Mac, so you can stream music, etc.",
+        "topics": [ "Getting started", "OBS", "Troubleshooting", "Mac" ]
+    },
+
+    {
+        "link": "https://gist.github.com/pretzelhands/410794f85221947078321498e4ef1028",
+        "title": "Adding the Shipstreams badge",
+        "description": "Written by yours truly this guide shows you how to add the shipstreams.com badge to your stream.",
+        "topics": [ "Getting started", "OBS", "Troubleshooting", "Mac" ]
+    }
+]
