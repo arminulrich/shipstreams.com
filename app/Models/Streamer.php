@@ -28,6 +28,7 @@ class Streamer extends Model
         'twitch_user_id',
         'data',
         'is_online',
+        'twitch_stream',
         'website',
         'twitter'
     ];
@@ -74,6 +75,22 @@ class Streamer extends Model
     public function getWebsiteAttribute()
     {
         return array_get($this->data, 'website');
+    }
+
+    public function setTwitchStreamAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'twitch_stream', $val);
+        $this->data = $data;
+    }
+
+    public function getTwitchStreamAttribute($val)
+    {
+        return array_get($this->data, 'twitch_stream');
+    }
+    public function getTwitchStreamTitleAttribute($val)
+    {
+        return array_get($this->data, 'twitch_stream.title', "");
     }
 
     public function getTwitterAttribute($val)
@@ -183,28 +200,42 @@ class Streamer extends Model
 
     public function getTweetTwitchLiveTextAttribute()
     {
+        $text = collect();
+
         if ($this->twitter) {
-            $text =
-                '🚢 @' .
-                $this->twitter .
-                ' is now shipping live on Twitch! ' .
-                $this->shipstreams_url .
-                ' via @shipstreams';
+            $text->push('🚢 @' . $this->twitter . ' is now shipping live! ');
         } else {
-            $text =
-                '🚢️ ' .
-                $this->twitch_username .
-                ' is now shipping live on Twitch! ' .
-                $this->shipstreams_url .
-                ' via @shipstreams';
+            $text->push(
+                '🚢️ ' . $this->twitch_username . ' is now shipping live! '
+            );
         }
-        return $text;
+        if ($this->twitch_stream_title) {
+            $text->push("📹 \"" . $this->twitch_stream_title . "\"");
+        }
+
+        $text->push("👉 " . $this->shipstreams_url . ' via @shipstreams');
+        return $text->implode("\n");
+    }
+    public function getTelegramTwitchLiveTextAttribute()
+    {
+        $text = collect();
+
+        $text->push(
+            '🚢️ ' . $this->twitch_username . ' is now shipping live! '
+        );
+
+        if ($this->twitch_stream_title) {
+            $text->push("📹 \"" . $this->twitch_stream_title . "\"");
+        }
+
+        $text->push("👉 " . $this->shipstreams_url);
+        return $text->implode("\n");
     }
     public function getTweetTwitchLiveUrlAttribute()
     {
         $url =
             "https://twitter.com/intent/tweet?text=" .
-            $this->tweet_twitch_live_text;
+            urlencode($this->tweet_twitch_live_text);
         return $url;
     }
 }

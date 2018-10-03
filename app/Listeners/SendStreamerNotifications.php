@@ -28,8 +28,20 @@ class SendStreamerNotifications
      */
     public function handle($event)
     {
-        $this->sendTelegram($event);
-        $this->sendBuffer($event);
+        if (app()->environment() != "production") {
+            return;
+        }
+        // - silent fail until i know what happened
+        try {
+            $this->sendTelegram($event);
+        } catch (\Exception $e) {
+
+        }
+        try {
+            $this->sendBuffer($event);
+        } catch (\Exception $e) {
+
+        }
     }
 
     private function sendTelegram($event)
@@ -40,15 +52,8 @@ class SendStreamerNotifications
         }
 
         $channel = "@shipstreams";
-        $list = collect([
-            '📹 ' .
-                $event->streamer->twitch_displayname .
-                ' is live streaming now',
-            "",
-            '👇' . "\n" . $event->streamer->shipstreams_url
-        ]);
 
-        $text = $list->implode("\n");
+        $text = $event->streamer->telegram_twitch_live_text;
 
         $data = ['chat_id' => $channel, 'text' => $text];
 
