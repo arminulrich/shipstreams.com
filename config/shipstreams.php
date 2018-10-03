@@ -2,7 +2,7 @@
 return [
     "ph-alert" =>
         [
-            "show" => true,
+            "show" => false,
             "url" => "https://www.producthunt.com/posts/shipstreams"
         ]
 ];
