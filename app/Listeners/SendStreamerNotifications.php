@@ -28,8 +28,17 @@ class SendStreamerNotifications
      */
     public function handle($event)
     {
-        $this->sendTelegram($event);
-        $this->sendBuffer($event);
+        // - silent fail until i know what happened
+        try {
+            $this->sendTelegram($event);
+        } catch (\Exception $e) {
+
+        }
+        try {
+            $this->sendBuffer($event);
+        } catch (\Exception $e) {
+
+        }
     }
 
     private function sendTelegram($event)
