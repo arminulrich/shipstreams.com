@@ -26,11 +26,4 @@
     @endif
 
     @include('streamers.partials.list',['streamers'=>$streamers])
-
-    <div class="row mt-5">
-        <div class="col-12 font-weight-bold">
-            Send me you Profile <a href="{{route('submit')}}">here</a> ! 🚢
-        </div>
-    </div>
-
 @endsection
