@@ -20,6 +20,9 @@ class BadgeShow extends Controller
         $website = $request->get('website');
         $customMessage = $request->get('customMessage');
 
-        return view('badge.show', compact('tagline', 'twitter', 'youtube', 'website', 'customMessage'));
+        return view(
+            'badge.show',
+            compact('tagline', 'twitter', 'youtube', 'website', 'customMessage')
+        );
     }
 }

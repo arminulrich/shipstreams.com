@@ -66,15 +66,18 @@
                 </g>
             </svg>
         </a>
-        <div class="header__social">
-            <span><a href="/resources" class="guides">Streaming guides and resources</a></span>
-            <span>&nbsp;|&nbsp;</span>
-            <span>
-            follow <a target="_blank" href="https://twitter.com/shipstreams"><i class="fab fa-twitter"></i> @shipstreams</a> 
-                or <a target="_blank" href="https://t.me/shipstreams"><i class="fab fa-telegram-plane"></i> shipstreams</a> by <a target="_blank"
-                                                                                                    href="https://twitter.com/arminulrich">@arminulrich</a>
-        
-            </span>
+        <div class="header__inner">
+            <div class="header__social">
+                <span>
+                follow <a target="_blank" href="https://twitter.com/shipstreams"><i class="fab fa-twitter"></i> @shipstreams</a> 
+                     by <a target="_blank"
+                                                                                                        href="https://twitter.com/arminulrich">@arminulrich</a>
+            
+                </span>
+            </div>
+            <div  class="header__submit">
+                <a class="btn btn-primary" href="/submit">Submit Profile</a>
+            </div>
         </div>
     </div>
 </header>

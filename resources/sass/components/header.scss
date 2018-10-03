@@ -12,6 +12,45 @@ $module: "header";
         margin: rem(15);
         margin-left: 0;
     }
+    &__inner {
+        @include flexbox;
+        @include justify-content(flex-end);
+        @include align-items(center);
+        @include flex-direction(row);
+    }
+    &__submit {
+        /* background-color: $blue;
+        display: block;
+        height: 100%;
+        height: rem(89);
+        line-height: rem(89);
+        padding: 0 rem(30);
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        @include transition(all 0.3s);
+        text-transform: uppercase;
+        margin-left: rem(30);
+        @include hover {
+            color: #fff;
+
+            text-decoration: none;
+            background-color: darken($blue, 10%);
+        }*/
+
+        display: none;
+        @include respond-to(md) {
+            margin-left: rem(30);
+
+            display: block;
+        }
+        a.btn {
+            font-weight: bold;
+            font-size: 16px;
+            padding: 1rem 1.5rem;
+            text-transform: uppercase;
+        }
+    }
     &__social {
         height: rem(89);
 
@@ -20,11 +59,10 @@ $module: "header";
         font-size: rem(14);
         line-height: rem(18);
         text-align: right;
-
-        @include flexbox;
-        @include justify-content(flex-end);
-        @include align-items(center);
-        @include flex-direction(row);
+        @include flexbox();
+        @include justify-content(center);
+        @include align-content(center);
+        @include flex-direction(column);
         span {
             display: inline-block;
         }
@@ -60,8 +98,4 @@ $module: "header";
         font-size: 24px;
         line-height: 1.4;
     }
-}
-
-.#{$module} .guides {
-    color: $red;
 }

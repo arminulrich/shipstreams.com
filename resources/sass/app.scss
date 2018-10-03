@@ -6,6 +6,7 @@
 @import "common/mixins";
 @import "common/breakpoints";
 @import "components/header";
+@import "components/footer";
 @import "components/streamer";
 @import "components/ph-alert";
 @import "components/card";
@@ -28,4 +29,18 @@
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+.site-content {
+    @include flex-grow(1);
+    height: 100%;
+}
+#app {
+    min-height: 100vh;
+    @include flexbox();
+    @include flex-direction(column);
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -14,5 +13,4 @@ class KitController extends Controller
 
         return view('kit.show', compact('kitResources'));
     }
-
 }
