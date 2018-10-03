@@ -1,0 +1,55 @@
+$module: "resource";
+
+.#{$module}-column {
+    margin-top: 2rem;
+}
+
+.#{$module} {
+    padding: 2rem;
+    color: #111;
+    transition: color 0.2s ease-in, box-shadow 0.2s ease-in;
+    font-size: 20px;
+    line-height: 1.2;
+
+    &:hover {
+        color: $red;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 rem(10) rem(15) rem(3) rgba(0, 0, 0, 0.1);
+    }
+
+    &__header {
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    &__cta {
+        background-color: $red;
+        color: white;
+        font-weight: bold;
+
+        &:hover {
+            transition: background-color 0.2s ease-in;
+            background-color: darken($red, 33%);
+        }
+    }
+
+    &__topics-list {
+        margin-bottom: 1.5rem;
+    }
+
+    &__topic {
+        background-color: darken($body-bg, 5%);
+        padding: 4px 8px;
+        border-radius: 9999px;
+        color: #333;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: inline-block;
+    }
+}
+
+.#{$module} p {
+    line-height: 1.5;
+}

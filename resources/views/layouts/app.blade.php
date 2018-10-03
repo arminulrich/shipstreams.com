@@ -4,27 +4,30 @@
     @yield('meta')
 </head>
 <body>
+
 <div id="app">
+    <div class="site-content">
 
-    @if(config('shipstreams.ph-alert.show'))
-        <a href="{{config('shipstreams.ph-alert.url')}}" target="_blank" class="ph-alert">
-            We are live on Product Hunt right meow! 😻
-        </a>
-    @endif
-        
-    @include('layouts.partials.header')
-        
-    @yield('header')
-        
-    <div class="container mt-5 mb-4">
+        @if(config('shipstreams.ph-alert.show'))
+            <a href="{{config('shipstreams.ph-alert.url')}}" target="_blank" class="ph-alert">
+                We are live on Product Hunt right meow! 😻
+            </a>
+        @endif
 
-        <div class="mt-5 mb-4 ">
-            @yield('content')
+        @include('layouts.partials.header')
+
+        @yield('header')
+
+        <div class="container mt-5 mb-4">
+
+            <div class="mt-5 mb-4 ">
+                @yield('content')
+            </div>
+
         </div>
-
     </div>
+    @include('layouts.partials.footer')
 </div>
 <script src="{{mix('js/app.js')}}"></script>
- 
 </body>
 </html>
