@@ -60,16 +60,15 @@ class RefreshStreamersOnlineState extends Command
 
         $twitch_data_streams = collect(
             $twitch->getStreamsByUserNames($twitch_user_names)->data
-        )
-            ->pluck('user_id')
-            ->unique();
+        )->groupBy('user_id');
 
-        foreach (
-            Streamer::whereIn('twitch_user_id', $twitch_data_streams)->get()
-            as $s
-        ) {
-            $s->is_online = true;
-            $s->save();
+        foreach ($twitch_data_streams as $user_id => $streams) {
+            $streamer = Streamer::where('twitch_user_id', $user_id)->first();
+            if ($streamer) {
+                $streamer->twitch_stream = $streams->first();
+                $streamer->is_online = true;
+                $streamer->save();
+            }
         }
     }
 }
