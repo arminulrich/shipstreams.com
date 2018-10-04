@@ -2,8 +2,10 @@
 namespace App\Models;
 
 use App\Events\StreamerWentOnline;
+use Bkwld\Decoy\Models\Base;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Streamer
@@ -21,8 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property String $twitter
  * @property Carbon $last_online
  */
-class Streamer extends Model
+class Streamer extends Base
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'twitch_username',
         'twitch_user_id',
@@ -244,5 +248,13 @@ class Streamer extends Model
             "https://twitter.com/intent/tweet?text=" .
             urlencode($this->tweet_twitch_live_text);
         return $url;
+    }
+
+    /**
+     * Admin Area Fields
+     */
+    public function getAdminTitleHtmlAttribute()
+    {
+        return $this->twitch_username;
     }
 }
