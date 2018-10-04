@@ -2,6 +2,7 @@
 namespace App\Console;
 
 use App\Console\Commands\RefreshStreamers;
+use App\Console\Commands\RefreshStreamersFromJson;
 use App\Console\Commands\RefreshStreamersOnlineState;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         RefreshStreamers::class,
+        RefreshStreamersFromJson::class,
         RefreshStreamersOnlineState::class
     ];
 
@@ -27,7 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('refresh:streamers')->hourly();
+        $schedule->command('refresh:streamers')->everyThirtyMinutes(); // update streamers from db
         $schedule->command('refresh:streamers_online')->everyFiveMinutes();
     }
 

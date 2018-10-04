@@ -84,6 +84,13 @@ class Streamer extends Model
         $this->data = $data;
     }
 
+    public function setTwitchUserAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'twitch.user', $val);
+        $this->data = $data;
+    }
+
     public function getTwitchStreamAttribute($val)
     {
         return array_get($this->data, 'twitch_stream');
@@ -154,7 +161,7 @@ class Streamer extends Model
         // - if "was online in the last 5 mins" - return true
         return (
             $this->last_online->timestamp >
-            (new Carbon())->subMinutes(10)->timestamp
+            (new Carbon())->subMinutes(6)->timestamp
         );
     }
 

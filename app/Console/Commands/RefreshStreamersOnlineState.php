@@ -43,23 +43,12 @@ class RefreshStreamersOnlineState extends Command
         /** @var Twitch $twitch */
         $twitch = app(Twitch::class);
 
-        $streamers_file = (
-            app()->environment() != 'production'
-                ? 'streamers_dev.json'
-                : 'streamers.json'
-        );
-
-        $streamers_json = collect(
-            json_decode(file_get_contents(app_path($streamers_file)), true)
-        );
-
-        // - fetch twitch data in batch
-        $twitch_user_names = $streamers_json
-            ->pluck('twitch_username')
-            ->toArray();
+        $twitchUserids = $allTwitchStreamers = Streamer
+            ::all()
+            ->pluck('twitch_user_id');
 
         $twitch_data_streams = collect(
-            $twitch->getStreamsByUserNames($twitch_user_names)->data
+            $twitch->getStreamsByUserIds($twitchUserids->toArray())->data
         )->groupBy('user_id');
 
         foreach ($twitch_data_streams as $user_id => $streams) {

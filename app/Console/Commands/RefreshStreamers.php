@@ -41,84 +41,27 @@ class RefreshStreamers extends Command
         /** @var Twitch $twitch */
         $twitch = app(Twitch::class);
 
-        $streamers_file = (
-            app()->environment() != 'production'
-                ? 'streamers_dev.json'
-                : 'streamers.json'
+        // - twitch user ids
+        $twitchUserids = $allTwitchStreamers = Streamer
+            ::all()
+            ->pluck('twitch_user_id');
+
+        // - fetch all data
+        $twitchUsers = [];
+
+        // get user data
+        $twitch_user_data = collect(
+            $twitch->getUsersByIds($twitchUserids->toArray())->data
         );
 
-        $streamers_json = collect(
-            json_decode(file_get_contents(app_path($streamers_file)), true)
-        );
-
-        // - fetch twitch data in batch
-        $twitch_user_names = $streamers_json
-            ->pluck('twitch_username')
-            ->toArray();
-
-        $twitch_data_users = $twitch->getUsersByNames($twitch_user_names);
-        $twitch_data_streams = $twitch->getStreamsByUserNames(
-            $twitch_user_names
-        );
-
-        $streamers_with_data = $streamers_json // - map streams only to see if the user is online
-            ->transform(function ($streamer) use ($twitch_data_users) {
-                $data = collect($twitch_data_users->data)->firstWhere(
-                    'login',
-                    $streamer['twitch_username']
-                );
-                array_set($streamer, 'data.twitch.user', (array) $data);
-                return $streamer;
-            })
-            ->transform(function ($streamer) use ($twitch_data_streams) {
-                $user_id = data_get($streamer, 'data.twitch.user.id');
-                $hasStream = (bool) collect(
-                    $twitch_data_streams->data
-                )->firstWhere('user_id', $user_id);
-
-                array_set($streamer, 'is_online', $hasStream);
-
-                return $streamer;
-            })
-            ->transform(function ($streamer) use ($twitch) {
-                // - fetch videos and sleep 3 sec so we dont get over api limit
-                $user_id = data_get($streamer, 'data.twitch.user.id', 0);
-
-                array_set(
-                    $streamer,
-                    'data.twitch.videos',
-                    (array) collect($twitch->getVideosByUser($user_id)->data)
-                        ->take(3)
-                        ->transform(function ($v) {
-                            return (array) $v;
-                        })
-                        ->toArray()
-                );
-
-                sleep(3);
-                return $streamer;
-            });
-
-        foreach ($streamers_with_data as $streamer) {
-            $s = Streamer::firstOrNew([
-                'twitch_username' => $streamer['twitch_username']
-            ]);
-            $s->twitch_user_id = intval(
-                data_get($streamer, 'data.twitch.user.id')
-            );
-            $s->data = $streamer['data'];
-            $s->fill(
-                collect($streamer)
-                    ->except('data')
-                    ->toArray()
-            );
-            $s->save();
+        foreach ($twitch_user_data as $twitch_user) {
+            $streamer = Streamer
+                ::whereTwitchUserId(data_get($twitch_user, 'id'))
+                ->first();
+            if ($streamer) {
+                $streamer->twitch_user = (array) $twitch_user;
+                $streamer->save();
+            }
         }
-
-        // - delete streamers who are not in json
-        $removedStreamers = Streamer
-            ::whereNotIn('twitch_username', $twitch_user_names)
-            ->get();
-        $removedStreamers->each->delete();
     }
 }
