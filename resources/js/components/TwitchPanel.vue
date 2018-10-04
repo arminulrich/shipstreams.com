@@ -1,5 +1,5 @@
 <template>
-    <div class="twitch-panel d-none d-sm-block">
+    <div class="twitch-panel">
         <div class="row mb-5">
             <div class="col">
 

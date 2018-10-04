@@ -23,6 +23,12 @@
 
 @section('header')
     <h1 class="sr-only">{{$streamer->twitch_displayname}}</h1>
+    <div class="container">
+        <div class="header__headlines">
+            <h1>shipstreams</h1>
+            <p>{{$streamer->twitch_display_name}}</p>
+        </div>
+    </div>
 @endsection
 
 @section('content')
