@@ -79,7 +79,7 @@
 
     <div class="message-container">
         <p id="message" class="opacity-anim">
-            <span>shipstreams.com</span> - {{$tagline}}
+            {!! $preview ? $messages[$preview] : $messages['tagline'] !!}
         </p>
     </div>
 </div>
@@ -89,25 +89,22 @@
     //var countdown = 602250;
     var messageCycle = 1;
     var logo = document.querySelector('svg');
-    var messages = [
-      "<span>shipstreams.com</span> - {{ $tagline }}",
-    ]
 
-    @if ($customMessage)
-      messages.push("{{ $customMessage }}")
+    var possibleMessages = {
+        tagline: "{!! $messages['tagline'] !!}",
+        twitter: "{!! $messages['twitter'] !!}",
+        youtube: "{!! $messages['youtube'] !!}",
+        website: "{!! $messages['website'] !!}",
+        customMessage: "{!! $messages['customMessage'] !!}",
+    }
+
+    @if ($preview)
+        var messages = [ possibleMessages['{{$preview}}'] ]
+    @else
+        var messages = Object.values(possibleMessages).filter(p => p.length)
     @endif
 
-    @if ($twitter)
-      messages.push('<span class="twitter-text"><i class="fa fa-twitter fa-lg"></i> Find me on Twitter:</span> {{ $twitter }}')
-    @endif
-
-    @if ($youtube)
-      messages.push('<span class="youtube-text"><i class="fa fa-youtube-play fa-lg"></i> Find me on YouTube:</span> {{ $youtube }}')
-    @endif
-
-    @if ($website)
-      messages.push('<span class="website-text"><i class="fa fa-globe fa-lg"></i> Visit my website:</span> {{ $website }}')
-    @endif
+    console.log(messages)
 
     var addTada = function addTada() {
         logo.classList.add('tada');

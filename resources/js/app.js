@@ -20,6 +20,7 @@ Vue.component(
 );
 
 Vue.component("twitch-panel", require("./components/TwitchPanel.vue"));
+Vue.component("badge-generator", require("./components/BadgeGenerator.vue"));
 
 const app = new Vue({
     el: "#app"
