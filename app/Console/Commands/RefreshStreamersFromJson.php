@@ -71,8 +71,15 @@ class RefreshStreamersFromJson extends Command
                     ->first();
 
                 if ($existsByTwitchUsername || $existsByTwitchId) {
-                    continue;
+                    //continue;
                 }
+
+                $streamerJson = collect(
+                    $streamers_json->firstWhere(
+                        'twitch_username',
+                        data_get($twitch_user, 'login')
+                    )
+                );
 
                 $data = [];
                 array_set($data, 'twitch.user', $twitch_user);
@@ -82,8 +89,10 @@ class RefreshStreamersFromJson extends Command
                 ]);
                 $s->twitch_username = data_get($twitch_user, 'login');
                 $s->twitch_user = (array) $twitch_user;
-
                 $s->data = $data;
+                $s->website = $streamerJson->get('website');
+                $s->twitter = $streamerJson->get('twitter');
+
                 $s->save();
             }
         }
