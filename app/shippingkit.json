@@ -28,9 +28,9 @@
     },
 
     {
-        "link": "https://gist.github.com/pretzelhands/410794f85221947078321498e4ef1028",
-        "title": "Adding the Shipstreams badge",
-        "description": "Written by yours truly this guide shows you how to add the shipstreams.com badge to your stream.",
-        "topics": [ "Getting started", "OBS", "Troubleshooting", "Mac" ]
+        "link": "https://shipstreams.com/badge/generate",
+        "title": "Generating a Shipstreams badge",
+        "description": "Our tool to easily generate your own shipstreams.com badge for your stream!"
+        "topics": [ "Getting started", "OBS" ]
     }
 ]

@@ -112,7 +112,9 @@ svg {
 }
 
 body {
-	background: darkgray;
+    margin: 0;
+    padding: 1rem;
+	background: transparent;
 	font-family: "proxima-soft", sans-serif;
 }
 

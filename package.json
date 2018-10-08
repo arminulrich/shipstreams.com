@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "breakpoint-sass": "^2.7.1"
+        "breakpoint-sass": "^2.7.1",
+        "query-string": "^6.2.0"
     }
 }
