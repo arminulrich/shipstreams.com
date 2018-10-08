@@ -30,7 +30,7 @@
     {
         "link": "https://shipstreams.com/badge/generate",
         "title": "Generating a Shipstreams badge",
-        "description": "Our tool to easily generate your own shipstreams.com badge for your stream!"
+        "description": "Our tool to easily generate your own shipstreams.com badge for your stream!",
         "topics": [ "Getting started", "OBS" ]
     }
 ]
