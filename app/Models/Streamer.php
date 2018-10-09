@@ -46,6 +46,15 @@ class Streamer extends Base
 
     public function setIsOnlineAttribute($val)
     {
+        // - special game filters
+        if (
+            in_array($this->twitch_stream_game_id, [
+                "30921" // rocket league
+            ])
+        ) {
+            return false;
+        }
+
         if ($val) {
             if ($this->last_online) {
                 if (
@@ -102,6 +111,10 @@ class Streamer extends Base
     public function getTwitchStreamTitleAttribute($val)
     {
         return array_get($this->data, 'twitch_stream.title', "");
+    }
+    public function getTwitchStreamGameIdAttribute($val)
+    {
+        return array_get($this->data, 'twitch_stream.game_id', "");
     }
 
     public function getTwitterAttribute($val)
