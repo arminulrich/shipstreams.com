@@ -46,7 +46,7 @@ class Streamer extends Base
 
     public function setIsOnlineAttribute($val)
     {
-        // - special game filters
+        // - special game filters (test)
         if (
             in_array($this->twitch_stream_game_id, [
                 "30921" // rocket league
@@ -156,13 +156,21 @@ class Streamer extends Base
         }
         return $n_format . $suffix;
     }
-
     /*
      * General
      */
 
     public function getIsOnlineAttribute()
     {
+        // - special game filters (test)
+        if (
+            in_array($this->twitch_stream_game_id, [
+                "30921" // rocket league
+            ])
+        ) {
+            return false;
+        }
+
         // - for local testing
         if (
             app()->environment() != 'production' &&
