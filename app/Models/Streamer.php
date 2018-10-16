@@ -48,9 +48,8 @@ class Streamer extends Base
     {
         // - special game filters (test)
         if (
-            in_array($this->twitch_stream_game_id, [
-                "30921" // rocket league
-            ])
+            !in_array($this->twitch_stream_game_id, ["509670"]) &&
+            intval($this->twitch_stream_game_id) > 0
         ) {
             return false;
         }
@@ -164,9 +163,8 @@ class Streamer extends Base
     {
         // - special game filters (test)
         if (
-            in_array($this->twitch_stream_game_id, [
-                "30921" // rocket league
-            ])
+            !in_array($this->twitch_stream_game_id, ["509670"]) &&
+            intval($this->twitch_stream_game_id) > 0
         ) {
             return false;
         }
