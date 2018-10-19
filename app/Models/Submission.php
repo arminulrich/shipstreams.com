@@ -16,6 +16,10 @@ class Submission extends Base
     {
         return array_get($this->data, 'twitch_username');
     }
+    public function getYoutubeChannelUrlAttribute()
+    {
+        return array_get($this->data, 'youtube_channel_url');
+    }
     public function getTwitterHandleAttribute()
     {
         return array_get($this->data, 'twitter_handle');

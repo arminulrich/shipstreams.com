@@ -17,6 +17,7 @@ class SubmitController extends Controller
         $submission = new Submission();
         $submission->data = $request->only([
             'email',
+            'youtube_channel_url',
             'twitch_username',
             'twitter_handle',
             'website'
