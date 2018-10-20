@@ -45,8 +45,8 @@
             Tweet about this stream</a>
     @endif        
     <br>
-    @if($streamer->twitch_url)
-    <a class="font-weight-bold" href="{{$streamer->twitch_url}}" target="_blank">
+    @if($streamer->twitch()->channel_url())
+    <a class="font-weight-bold" href="{{$streamer->twitch()->channel_url()}}" target="_blank">
         <i class="fab fa-twitch"></i>
         Watch it on Twitch</a>
     @endif

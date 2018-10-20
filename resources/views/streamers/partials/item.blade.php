@@ -51,10 +51,10 @@
                     </li>
                     @endif
                         
-                    @if($streamer->twitch_username) 
+                    @if($streamer->twitch()->channel_url()) 
                         <li>
                             <a target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open Twitch Profile"
-                               href="{{$streamer->twitch_url}}"><i class="fab fa-twitch"></i></a>
+                               href="{{$streamer->twitch()->channel_url()}}"><i class="fab fa-twitch"></i></a>
                         </li>
                      @endif
                 </ul>
