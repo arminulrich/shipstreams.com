@@ -13,10 +13,21 @@
         'twitch'=>'Twitch',
         'youtube'=>'YouTube'
         ]) !!}
- 
+
     </fieldset>
- 
-    
+
+    <fieldset>
+        <div class="legend">
+            Links
+        </div>
+
+        {!! Former::text('website') !!}
+        {!! Former::text('twitter') !!}
+        {!! Former::text('email') !!}
+
+    </fieldset>
+
+
 </div>
 
 {!! View::make('decoy::shared.form._footer', $__data)->render() !!}

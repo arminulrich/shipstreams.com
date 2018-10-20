@@ -93,10 +93,21 @@ class Streamer extends Base
         array_set($data, 'twitter', $val);
         $this->data = $data;
     }
+    public function setEmailAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'email', $val);
+        $this->data = $data;
+    }
 
     public function getWebsiteAttribute()
     {
         return array_get($this->data, 'website');
+    }
+
+    public function getEmailAttribute()
+    {
+        return array_get($this->data, 'email');
     }
 
     public function setYoutubeChannelAttribute($val)
