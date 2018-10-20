@@ -75,7 +75,7 @@ class TwitchChannel extends Channel
 
     public function channel_url(): string
     {
-        return 'https://twitch.tv/' . $this->stream_title();
+        return 'https://twitch.tv/' . $this->streamer->twitch_username;
     }
 
     public function stream_title(): string
