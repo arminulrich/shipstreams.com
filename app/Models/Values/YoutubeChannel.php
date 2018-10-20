@@ -5,6 +5,9 @@ class YoutubeChannel extends Channel
 {
     public function profile_name(): string
     {
+        if ($this->streamer->alias) {
+            return $this->streamer->alias;
+        }
         return array_get($this->data, 'youtube.channel.snippet.title', '');
     }
 

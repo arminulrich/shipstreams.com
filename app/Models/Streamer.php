@@ -220,7 +220,7 @@ class Streamer extends Base
      */
     public function getAdminTitleHtmlAttribute()
     {
-        return $this->twitch_username;
+        return $this->main_channel()->profile_name();
     }
 
     public function setYoutubeStreamAttribute($val)
