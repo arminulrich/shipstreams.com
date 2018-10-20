@@ -17,8 +17,11 @@ abstract class Channel implements ChannelInterface, Arrayable
      *
      * @param $data
      */
-    public function __construct(Streamer $streamer, array $data)
+    public function __construct(Streamer $streamer, $data = [])
     {
+        if (!is_array($data)) {
+            $data = [];
+        }
         $this->data = $data;
         $this->streamer = $streamer;
     }
