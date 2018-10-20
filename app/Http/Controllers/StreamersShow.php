@@ -14,7 +14,7 @@ class StreamersShow extends Controller
      */
     public function __invoke(Request $request, $slug)
     {
-        $streamer = \App\Models\Streamer::whereTwitchUsername($slug)->first();
+        $streamer = \App\Models\Streamer::whereSlug($slug)->first();
         abort_unless($streamer, 404);
 
         return view('streamers.show', compact('streamer'));

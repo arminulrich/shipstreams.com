@@ -2,6 +2,10 @@
 namespace App\Models;
 
 use App\Events\StreamerWentOnline;
+use App\Models\Traits\TwitchAttributes;
+use App\Models\Traits\WithChannels;
+use App\Models\Values\Channel;
+use App\Models\Values\TwitchChannel;
 use Bkwld\Decoy\Models\Base;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +30,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Streamer extends Base
 {
     use SoftDeletes;
+    use WithChannels;
+
+    const MAIN_CHANNEL_TWITCH = 'twitch';
+    const MAIN_CHANNEL_YOUTUBE = 'youtube';
+
+    public function getSlugKeyName(): string
+    {
+        return "slug";
+    }
 
     protected $fillable = [
         'twitch_username',
@@ -37,21 +50,18 @@ class Streamer extends Base
         'twitter'
     ];
     protected $casts = ['data' => 'array', 'last_online' => 'datetime'];
-
-    protected $appends = [
-        'twitch_profile_image_url',
-        'twitch_url',
-        'twitch_displayname'
-    ];
+    protected $appends = ['main_channel', 'is_online'];
 
     public function setIsOnlineAttribute($val)
     {
         // - special game filters (test)
-        if (
-            !in_array($this->twitch_stream_game_id, ["509670"]) &&
-            intval($this->twitch_stream_game_id) > 0
-        ) {
-            return false;
+        if ($this->twitch_username) {
+            if (
+                !in_array($this->twitch_stream_game_id, ["509670"]) &&
+                intval($this->twitch_stream_game_id) > 0
+            ) {
+                return false;
+            }
         }
 
         if ($val) {
@@ -89,31 +99,11 @@ class Streamer extends Base
         return array_get($this->data, 'website');
     }
 
-    public function setTwitchStreamAttribute($val)
+    public function setYoutubeChannelAttribute($val)
     {
         $data = $this->data;
-        array_set($data, 'twitch_stream', $val);
+        array_set($data, 'youtube.channel', $val);
         $this->data = $data;
-    }
-
-    public function setTwitchUserAttribute($val)
-    {
-        $data = $this->data;
-        array_set($data, 'twitch.user', $val);
-        $this->data = $data;
-    }
-
-    public function getTwitchStreamAttribute($val)
-    {
-        return array_get($this->data, 'twitch_stream');
-    }
-    public function getTwitchStreamTitleAttribute($val)
-    {
-        return array_get($this->data, 'twitch_stream.title', "");
-    }
-    public function getTwitchStreamGameIdAttribute($val)
-    {
-        return array_get($this->data, 'twitch_stream.game_id', "");
     }
 
     public function getTwitterAttribute($val)
@@ -155,6 +145,7 @@ class Streamer extends Base
         }
         return $n_format . $suffix;
     }
+
     /*
      * General
      */
@@ -162,11 +153,13 @@ class Streamer extends Base
     public function getIsOnlineAttribute()
     {
         // - special game filters (test)
-        if (
-            !in_array($this->twitch_stream_game_id, ["509670"]) &&
-            intval($this->twitch_stream_game_id) > 0
-        ) {
-            return false;
+        if ($this->twitch_username) {
+            if (
+                !in_array($this->twitch_stream_game_id, ["509670"]) &&
+                intval($this->twitch_stream_game_id) > 0
+            ) {
+                return false;
+            }
         }
 
         // - for local testing
@@ -193,80 +186,22 @@ class Streamer extends Base
         return $this->twitch_username . ' is shipping live now! 🚢';
     }
 
-    /*
-     * Twitch Stuff
-     */
-    public function getTwitchUrlAttribute()
+    public function getYoutubeUrlAttribute()
     {
-        return 'https://twitch.tv/' . $this->twitch_username;
+        return 'https://youtube.com/channel/' . $this->youtube_channel_id;
+    }
+
+    public function getMainUrlAttribute()
+    {
+        if ($this->streamer_main_channel == Streamer::MAIN_CHANNEL_TWITCH) {
+            return $this->youtube_url;
+        }
+        return $this->twitch_url;
     }
 
     public function getShipstreamsUrlAttribute()
     {
-        return url($this->twitch_username);
-    }
-
-    public function getTwitchDisplaynameAttribute()
-    {
-        return array_get($this->data, 'twitch.user.display_name', '');
-    }
-
-    public function getTwitchProfileImageUrlAttribute()
-    {
-        return array_get($this->data, 'twitch.user.profile_image_url', '');
-    }
-
-    public function getTwitchProfileDescriptionAttribute()
-    {
-        return array_get($this->data, 'twitch.user.description', '');
-    }
-
-    public function getTwitchViewsAttribute()
-    {
-        return $this->number_format_short(
-            intval(array_get($this->data, 'twitch.user.view_count', 0))
-        );
-    }
-
-    public function getTweetTwitchLiveTextAttribute()
-    {
-        $text = collect();
-
-        if ($this->twitter) {
-            $text->push('🚢 @' . $this->twitter . ' is now shipping live! ');
-        } else {
-            $text->push(
-                '🚢️ ' . $this->twitch_username . ' is now shipping live! '
-            );
-        }
-        if ($this->twitch_stream_title) {
-            $text->push("📹 \"" . $this->twitch_stream_title . "\"");
-        }
-
-        $text->push("👉 " . $this->shipstreams_url . ' via @shipstreams');
-        return $text->implode("\n");
-    }
-    public function getTelegramTwitchLiveTextAttribute()
-    {
-        $text = collect();
-
-        $text->push(
-            '🚢️ ' . $this->twitch_username . ' is now shipping live! '
-        );
-
-        if ($this->twitch_stream_title) {
-            $text->push("📹 \"" . $this->twitch_stream_title . "\"");
-        }
-
-        $text->push("👉 " . $this->shipstreams_url);
-        return $text->implode("\n");
-    }
-    public function getTweetTwitchLiveUrlAttribute()
-    {
-        $url =
-            "https://twitter.com/intent/tweet?text=" .
-            urlencode($this->tweet_twitch_live_text);
-        return $url;
+        return url($this->slug);
     }
 
     /**
@@ -275,5 +210,36 @@ class Streamer extends Base
     public function getAdminTitleHtmlAttribute()
     {
         return $this->twitch_username;
+    }
+
+    public function setYoutubeStreamAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'youtube_stream', $val);
+        $this->data = $data;
+    }
+
+    public function setTwitchStreamAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'twitch_stream', $val);
+        $this->data = $data;
+    }
+
+    public function setTwitchUserAttribute($val)
+    {
+        $data = $this->data;
+        array_set($data, 'twitch.user', $val);
+        $this->data = $data;
+    }
+
+    public function getTwitchStreamAttribute($val)
+    {
+        return array_get($this->data, 'twitch_stream');
+    }
+
+    public function getTwitchStreamGameIdAttribute($val)
+    {
+        return array_get($this->data, 'twitch_stream.game_id', "");
     }
 }

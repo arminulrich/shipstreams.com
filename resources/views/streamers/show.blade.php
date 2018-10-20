@@ -33,9 +33,11 @@
 
 @section('content')
 
-    <div class="twitch-panel__wrap">
-        <twitch-panel :streamers='@json([$streamer])'></twitch-panel>
-    </div>
+    @if($streamer->is_online)
+        <div class="twitch-panel__wrap">
+            <twitch-panel :streamers='@json([$streamer])'></twitch-panel>
+        </div>
+    @endif
 
     @if($streamer->is_online)
         <a class="font-weight-bold text-danger" target="_blank" href="{{$streamer->tweet_twitch_live_url}}">
@@ -43,9 +45,18 @@
             Tweet about this stream</a>
     @endif        
     <br>
+    @if($streamer->twitch_url)
     <a class="font-weight-bold" href="{{$streamer->twitch_url}}" target="_blank">
         <i class="fab fa-twitch"></i>
         Watch it on Twitch</a>
+    @endif
+    @if($streamer->youtube_channel_id)
+        <br>
+
+        <a class="font-weight-bold" href="https://youtube.com/channel/{{$streamer->youtube_channel_id}}" target="_blank">
+        <i class="fab fa-youtube"></i>
+        Watch it on Youtube</a>
+    @endif
     @if($streamer->twitter)
         <br>
         <a class="font-weight-bold" href="https://twitter.com/{{$streamer->twitter}}" target="_blank">

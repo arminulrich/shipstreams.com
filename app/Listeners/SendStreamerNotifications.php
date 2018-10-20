@@ -1,6 +1,7 @@
 <?php
 namespace App\Listeners;
 
+use App\Events\StreamerWentOnline;
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,25 +27,22 @@ class SendStreamerNotifications
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(StreamerWentOnline $event)
     {
-        if (app()->environment() != "production") {
-            return;
-        }
         // - silent fail until i know what happened
         try {
             $this->sendTelegram($event);
         } catch (\Exception $e) {
-
+            $this->error($e->getMessage());
         }
         try {
             $this->sendBuffer($event);
         } catch (\Exception $e) {
-
+            $this->error($e->getMessage());
         }
     }
 
-    private function sendTelegram($event)
+    private function sendTelegram(StreamerWentOnline $event)
     {
         $apiToken = env('TELEGRAM_API_TOKEN');
         if (!$apiToken) {
@@ -52,18 +50,21 @@ class SendStreamerNotifications
         }
 
         $channel = "@shipstreams";
-
-        $text = $event->streamer->telegram_twitch_live_text;
+        $text = $event->streamer->main_channel()->telegram_live_text();
 
         $data = ['chat_id' => $channel, 'text' => $text];
 
-        file_get_contents(
-            "https://api.telegram.org/bot$apiToken/sendMessage?" .
-                http_build_query($data)
-        );
+        if (app()->environment() != "production") {
+            print_r('TELEGRAM POSTED: ' . print_r($data, true));
+        } else {
+            file_get_contents(
+                "https://api.telegram.org/bot$apiToken/sendMessage?" .
+                    http_build_query($data)
+            );
+        }
     }
 
-    private function sendBuffer($event)
+    private function sendBuffer(StreamerWentOnline $event)
     {
         // using my buffer account because no twitter dev account; and didnt want to go the auth route lol
         $bufferProfileId = env('BUFFER_PROFILE_ID');
@@ -77,11 +78,22 @@ class SendStreamerNotifications
 
         $update = new Update();
         $update->addProfile($bufferProfileId);
-        $update->text = $event->streamer->tweet_twitch_live_text;
+        $update->text = $event->streamer->main_channel()->tweet_live_text();
         $update->shorten = 'false';
         $update->now = 'true';
         $update->top = 'true';
         //$update->schedule((new Carbon())->setTime(21, 0, 0)->addDay()); // you can use timestamp
-        $client->createUpdate($update);
+
+        if (app()->environment() != "production") {
+            print_r(
+                'TWITTER POSTED: ' .
+                    print_r(
+                        $event->streamer->main_channel()->tweet_live_text(),
+                        true
+                    )
+            );
+        } else {
+            $client->createUpdate($update);
+        }
     }
 }

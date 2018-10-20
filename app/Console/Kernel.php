@@ -16,7 +16,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         RefreshStreamers::class,
-        RefreshStreamersFromJson::class,
         RefreshStreamersOnlineState::class
     ];
 

@@ -59,5 +59,28 @@ class RefreshStreamersOnlineState extends Command
                 $streamer->save();
             }
         }
+        // refresh youtube
+        // add YT data
+        $ytStreamers = Streamer::whereNotNull('youtube_channel_id')->get();
+        foreach ($ytStreamers as $streamer) {
+            $url = "https://www.googleapis.com/youtube/v3/search";
+
+            $client = new \GuzzleHttp\Client();
+            $response = $client->get($url, [
+                'query' =>
+                    [
+                        'key' => env('YOUTUBE_API_KEY'),
+                        'channelId' => $streamer->youtube_channel_id,
+                        'eventType' => 'live',
+                        'type' => 'video',
+                        'part' => 'snippet'
+                    ]
+            ]);
+            $json = json_decode($response->getBody()->getContents(), true);
+            $streamer->youtube_stream = (array) data_get($json, 'items.0');
+            $streamer->is_online = true;
+
+            $streamer->save();
+        }
     }
 }

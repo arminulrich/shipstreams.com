@@ -1,6 +1,7 @@
 <?php
 namespace App\Events;
 
+use App\Models\Streamer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -12,6 +13,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class StreamerWentOnline
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    /** @var Streamer */
     public $streamer;
 
     /**

@@ -15,7 +15,10 @@ class StreamersIndex extends Controller
     public function __invoke(Request $request)
     {
         $streamers = \App\Models\Streamer
-            ::where('twitch_user_id', '>', 0)
+            ::where(function ($q) {
+                $q->orWhere('twitch_user_id', '>', 0);
+                $q->orWhere('youtube_channel_id', '!=', null);
+            })
             ->orderBy('last_online', 'DESC')
             ->orderBy('twitch_username', 'ASC')
             ->get();

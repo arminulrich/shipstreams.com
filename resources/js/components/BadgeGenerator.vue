@@ -73,44 +73,47 @@
 </template>
 
 <script>
-    import qs from 'query-string'
+import qs from "query-string";
 
-    export default {
-        methods: {
-            preview(field) {
-                const query = this.buildQuery()
-                this.previewLink = `${query}&preview=${field}`
-                this.$refs.previewFrame.scrollIntoView({ block: "start", behavior: "smooth" })
-            },
-
-            generateLink() {
-                this.badgeLink = `https://shipstreams.com${this.buildQuery()}`
-                this.generatedLink = true
-            },
-
-            buildQuery() {
-                const parameters = Object.keys(this.parameters).reduce((p, c) => {
-                    if (this.parameters[c].length) p[c] = this.parameters[c];
-                    return p;
-                }, {});
-
-                return `/badge?${qs.stringify(parameters)}`
-            }
+export default {
+    methods: {
+        preview(field) {
+            const query = this.buildQuery();
+            this.previewLink = `${query}&preview=${field}`;
+            this.$refs.previewFrame.scrollIntoView({
+                block: "start",
+                behavior: "smooth"
+            });
         },
 
-        data() {
-            return {
-                generatedLink: false,
-                badgeLink: "/badge",
-                previewLink: "/badge",
-                parameters: {
-                    tagline: "",
-                    twitter: "",
-                    youtube: "",
-                    website: "",
-                    customMessage: ""
-                }
-            }
+        generateLink() {
+            this.badgeLink = `https://shipstreams.com${this.buildQuery()}`;
+            this.generatedLink = true;
         },
+
+        buildQuery() {
+            const parameters = Object.keys(this.parameters).reduce((p, c) => {
+                if (this.parameters[c].length) p[c] = this.parameters[c];
+                return p;
+            }, {});
+
+            return `/badge?${qs.stringify(parameters)}`;
+        }
+    },
+
+    data() {
+        return {
+            generatedLink: false,
+            badgeLink: "/badge",
+            previewLink: "/badge",
+            parameters: {
+                tagline: "",
+                twitter: "",
+                youtube: "",
+                website: "",
+                customMessage: ""
+            }
+        };
     }
+};
 </script>
