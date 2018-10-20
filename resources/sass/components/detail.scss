@@ -1,0 +1,61 @@
+$module: "detail";
+
+.#{$module} {
+    &__body {
+        &-head {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 21px;
+            color: #000000;
+            padding-bottom: rem(15);
+            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+            margin-bottom: rem(25);
+        }
+        padding-top: 10rem;
+        margin-top: -10rem;
+
+        padding-bottom: rem(80);
+
+        background: #fff;
+    }
+
+    &__teaser {
+        background-color: #eff3fa;
+        > .container {
+            @include flexbox;
+            @include flex-direction(row);
+        }
+        &-illustration {
+            padding-top: 50px;
+            @include flex-grow(0);
+
+            display: none;
+            @include respond-to(md) {
+                display: block;
+            }
+        }
+        &-cta {
+            h4 {
+                font-weight: bold;
+                font-size: 36px;
+                color: #000000;
+                line-height: 44px;
+                margin-bottom: 20px;
+            }
+
+            padding: 40px 0;
+
+            @include respond-to(md) {
+                margin-left: 50px;
+                padding: 0;
+            }
+            @include flex-grow(1);
+
+            @include flexbox;
+            @include flex-direction(column);
+            @include justify-content(center);
+        }
+    }
+
+    margin-bottom: rem(-60);
+}

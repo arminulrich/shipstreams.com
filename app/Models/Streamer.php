@@ -50,7 +50,7 @@ class Streamer extends Base
         'twitter'
     ];
     protected $casts = ['data' => 'array', 'last_online' => 'datetime'];
-    protected $appends = ['main_channel', 'is_online'];
+    protected $appends = ['main_channel', 'is_online', 'display_last_online'];
 
     public function setIsOnlineAttribute($val)
     {
@@ -194,7 +194,7 @@ class Streamer extends Base
 
     public function getOgImageTextAttribute()
     {
-        return $this->twitch_username . ' is shipping live now! 🚢';
+        return ($this->main_channel()->profile_name() . ' is shipping live!');
     }
 
     public function getYoutubeUrlAttribute()
@@ -252,5 +252,12 @@ class Streamer extends Base
     public function getTwitchStreamGameIdAttribute($val)
     {
         return array_get($this->data, 'twitch_stream.game_id', "");
+    }
+
+    public function getDisplayLastOnlineAttribute()
+    {
+        if ($this->last_online) {
+            return $this->last_online->toDateString();
+        }
     }
 }

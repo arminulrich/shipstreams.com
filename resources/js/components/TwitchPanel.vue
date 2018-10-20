@@ -16,9 +16,21 @@
                             <div class="twitch-panel__head">
                                 <a class="twitch-panel__head-link" target="_blank" :href="streamer_selected.main_url">
                                     <img v-if="streamers.length == 1" :src="streamer_selected.main_channel.profile_image_url" class="twitch-panel__head-image"/>
-                                    <span class="twitch-panel__head-name">
+
+                                    <span class="twitch-panel__head-name float-left">
                                         {{streamer_selected.main_channel.profile_name}} <template v-if="streamer_selected.is_online">is <span>streaming now</span></template>
                                     </span>
+
+                                    <div class="twitch-panel__head-meta float-right">
+                                        <span v-if="!streamer_selected.is_online" class="twitch-panel__head-last-online">
+                                            Last Streamed: {{streamer_selected.display_last_online}}
+                                        </span>
+                                        <span class="twitch-panel__head-views">
+                                            <i class="far fa-eye"></i> {{streamer_selected.main_channel.total_views}}
+                                        </span>
+                                        
+                                    </div>
+
                                 </a>
                             </div>
                             <div class="twitch-panel__iframe">
@@ -56,7 +68,6 @@ export default {
     },
     mounted() {
         this.streamer_selected = this.streamers[0];
-        console.log(this.streamer_selected);
     },
     computed: {
         iframe_url() {

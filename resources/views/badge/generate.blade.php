@@ -15,5 +15,13 @@
 @endsection
 
 @section('content')
-<badge-generator></badge-generator>
+
+    <div class="container mt-5 mb-4">
+
+        <div class="mt-5 mb-4 ">
+            <badge-generator></badge-generator>
+        </div>
+
+    </div>
+
 @endsection

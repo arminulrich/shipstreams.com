@@ -16,10 +16,18 @@
         /** @var \Illuminate\Support\Collection $streamers_online */
 ?>
 @section('content')
-    @if($streamers_online->count())
-        <div class="twitch-panel__wrap">
-            <twitch-panel :streamers='@json($streamers_online)' ></twitch-panel>    
+
+    <div class="container mt-5 mb-4">
+
+        <div class="mt-5 mb-4 ">
+            @if($streamers_online->count())
+                <div class="twitch-panel__wrap">
+                    <twitch-panel :streamers='@json($streamers_online)' ></twitch-panel>
+                </div>
+            @endif
+            @include('streamers.partials.list',['streamers'=>$streamers])
         </div>
-    @endif
-    @include('streamers.partials.list',['streamers'=>$streamers])
+
+    </div>
+  
 @endsection

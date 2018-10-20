@@ -25,7 +25,7 @@ class SubmitProfileRequest extends FormRequest
         return [
             "email" => "email|required",
             "twitch_username" => "required_without:youtube_channel_url",
-            "youtube_channel_url" => "required_without:twitch_username|url",
+            "youtube_channel_url" => "required_without:twitch_username",
             "twitter_handle" => "max:255",
             "website" => "url|max:512|nullable"
         ];

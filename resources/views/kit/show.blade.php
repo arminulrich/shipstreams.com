@@ -20,25 +20,35 @@
  
 
 @section('content')
-        <div class="row">
-            @foreach($kitResources as $resource)
-                <div class="col-xs-12 col-md-6 resource-column">
-                    <a href="{{ $resource->link }}" target="_blank" class="card resource">
-                        <h3 class="resource__header">{{ $resource->title }}</h3>
-                        <p>{{ $resource->description }}</p>
 
-                        <div class="resource__topics-list">
-                            @foreach($resource->topics as $topic)
-                                <span class="resource__topic">
+
+    <div class="container mt-5 mb-4">
+
+        <div class="mt-5 mb-4 ">
+            <div class="row">
+                @foreach($kitResources as $resource)
+                    <div class="col-xs-12 col-md-6 resource-column">
+                        <a href="{{ $resource->link }}" target="_blank" class="card resource">
+                            <h3 class="resource__header">{{ $resource->title }}</h3>
+                            <p>{{ $resource->description }}</p>
+
+                            <div class="resource__topics-list">
+                                @foreach($resource->topics as $topic)
+                                    <span class="resource__topic">
                         {{ $topic }}
                     </span>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
 
-                        <button class="btn resource__cta">Visit guide</button>
-                    </a>
-                </div>
-            @endforeach
+                            <button class="btn resource__cta">Visit guide</button>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
+
+    </div>
+
+
         
 @endsection

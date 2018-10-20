@@ -18,13 +18,7 @@
 
         @yield('header')
 
-        <div class="container mt-5 mb-4">
-
-            <div class="mt-5 mb-4 ">
-                @yield('content')
-            </div>
-
-        </div>
+        @yield('content')
     </div>
     @include('layouts.partials.footer')
 </div>

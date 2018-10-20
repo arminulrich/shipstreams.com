@@ -5,6 +5,7 @@ $module: "twitch-panel";
     .card-body {
         padding: 0;
     }
+
     &__wrap {
         // Small devices (landscape phones, 576px and up)
         @media (min-width: 576px) {
@@ -30,6 +31,22 @@ $module: "twitch-panel";
     &__head {
         @include clearfix;
         margin-bottom: rem(16);
+
+        &-meta {
+        }
+        &-last-online {
+            display: inline-block;
+            opacity: 0.45;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        &-views {
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
         &-image {
             max-width: 35px;
             border-radius: 100%;

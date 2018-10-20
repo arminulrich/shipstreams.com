@@ -14,9 +14,19 @@
 
 @endsection
 @section('content')
-    @if(request()->get('success'))
-        @include('submit.partials.success')
-    @else
-        @include('submit.partials.form')
-    @endif
+
+
+
+    <div class="container mt-5 mb-4">
+
+        <div class="mt-5 mb-4 ">
+            @if(request()->get('success'))
+                @include('submit.partials.success')
+            @else
+                @include('submit.partials.form')
+            @endif
+        </div>
+
+    </div>
+
 @endsection
