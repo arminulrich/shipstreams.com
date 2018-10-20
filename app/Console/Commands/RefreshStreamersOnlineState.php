@@ -45,6 +45,8 @@ class RefreshStreamersOnlineState extends Command
 
         $twitchUserids = $allTwitchStreamers = Streamer
             ::all()
+            ->where('twitch_user_id', '!=', null)
+            ->where('twitch_user_id', '!=', '')
             ->pluck('twitch_user_id');
 
         $twitch_data_streams = collect(
