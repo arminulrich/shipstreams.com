@@ -15,10 +15,10 @@ class CreateStreamersTable extends Migration
         Schema::create('streamers', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('twitch_username');
-            $table->string('twitch_user_id');
+            $table->string('twitch_username')->nullable();
+            $table->string('twitch_user_id')->nullable();
             $table->timestamp('last_online')->nullable();
-            $table->longText('data');
+            $table->longText('data')->nullable();
 
             $table->timestamps();
         });

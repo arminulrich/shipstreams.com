@@ -78,7 +78,10 @@ class RefreshStreamersOnlineState extends Command
             ]);
             $json = json_decode($response->getBody()->getContents(), true);
             $streamer->youtube_stream = (array) data_get($json, 'items.0');
-            $streamer->is_online = true;
+
+            if (count(data_get($json, 'items.0', []))) {
+                $streamer->is_online = true;
+            }
 
             $streamer->save();
         }
