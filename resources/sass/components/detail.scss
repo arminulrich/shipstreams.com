@@ -1,6 +1,13 @@
 $module: "detail";
 
 .#{$module} {
+    &--with-stream {
+        .#{$module}__body {
+            padding-top: 10rem;
+            margin-top: -10rem;
+        }
+    }
+
     &__body {
         &-head {
             text-transform: uppercase;
@@ -11,14 +18,13 @@ $module: "detail";
             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
             margin-bottom: rem(25);
         }
-        padding-top: 10rem;
-        margin-top: -10rem;
 
         padding-bottom: rem(80);
+        padding-top: rem(80);
+        margin-top: rem(-50);
 
         background: #fff;
     }
-
     &__teaser {
         background-color: #eff3fa;
         > .container {

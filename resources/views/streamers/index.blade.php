@@ -4,6 +4,7 @@
     @include('layouts.partials.meta')
     @include('layouts.partials.meta-seo')
 @endsection
+
 @section('header')
     <div class="container">
         <div class="header__headlines">
@@ -18,7 +19,6 @@
 @section('content')
 
     <div class="container mt-5 mb-4">
-
         <div class="mt-5 mb-4 ">
             @if($streamers_online->count())
                 <div class="twitch-panel__wrap">
