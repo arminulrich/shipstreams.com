@@ -33,12 +33,12 @@ class SendStreamerNotifications
         try {
             $this->sendTelegram($event);
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+
         }
         try {
             $this->sendBuffer($event);
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+
         }
     }
 
