@@ -46,16 +46,14 @@ class RefreshStreamers extends Command
         // - twitch user ids
         $twitchUserids = $allTwitchStreamers = Streamer
             ::all()
+            ->where('twitch_user_id', '!=', null)
+            ->where('twitch_user_id', '!=', '')
             ->pluck('twitch_user_id');
-
-        // - fetch all data
-        $twitchUsers = [];
 
         // get user data
         $twitch_user_data = collect(
             $twitch->getUsersByIds($twitchUserids->toArray())->data
         );
-
         foreach ($twitch_user_data as $twitch_user) {
             $streamer = Streamer
                 ::whereTwitchUserId(data_get($twitch_user, 'id'))
